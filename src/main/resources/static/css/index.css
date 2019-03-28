@@ -1,0 +1,65 @@
+{
+  margin: 0;
+  padding: 0
+}
+.btnBlue{
+    padding: 4px 10px;
+    display:inline-block;
+    background: #2283a3;
+    border:none;
+    color: #fff;
+    font: 12px "微软雅黑";
+    cursor: pointer;
+    float:left;
+    margin-right:10px;
+    margin-top:26px;
+}
+.confirmBox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid #ababab;
+    border-radius: 3px;
+    background: #F0F0F0;
+    padding: 20px 20px 0 20px;
+    width: 286px;
+    height: 140px;
+    margin-top: -50px;
+    margin-left: -180px;
+    z-index: 1000
+}
+
+/*使用以下方式直接在index.html中使用样式。*/
+/*
+<style type="text/css">
+                          {
+                              margin: 0;
+                              padding: 0
+                          }
+.btnBlue{
+    padding: 4px 10px;
+    display:inline-block;
+    background: #2283a3;
+    border:none;
+    color: #fff;
+    font: 12px "微软雅黑";
+    cursor: pointer;
+    float:left;
+    margin-right:10px;
+    margin-top:26px;
+}
+.confirmBox {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid #ababab;
+    border-radius: 3px;
+    background: #F0F0F0;
+    padding: 20px 20px 0 20px;
+    width: 286px;
+    height: 140px;
+    margin-top: -50px;
+    margin-left: -180px;
+    z-index: 1000
+}
+</style>*/

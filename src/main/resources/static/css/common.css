@@ -1,0 +1,175 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: #333333;
+    font-size: 12px;
+    font-family:PingFangSC-Regular;
+}
+.clearfix::after,
+.clearfix::before{
+    display: table;
+    clear: both;
+    content: ''
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    top: 0;
+    left: 0;
+
+}
+.container::after,
+.container::before{
+    display: table;
+    clear: both;
+    content: ''
+}
+
+/*头部*/
+.header {
+    height: 80px;
+}
+.header > .container> .logo-box{
+    display: block;
+    float: left;
+    width: 200px;
+    height: 40px;
+    margin-top: 20px;
+
+
+}
+.header > .container> .logo-box>.logo{
+    display: block;
+    float: left;
+    width: 66px;
+    height: 40px;
+    background-image: url(../img/logo.svg);
+    background-size: cover;
+}
+.header > .container> .logo-box>.logo-title{
+    float: left;
+    font-size:20px;
+    color:#444444;
+    line-height: 40px;
+    border-left: 1px solid #d8d8d8;
+    padding-left: 14px;
+    margin-left: 14px;
+}
+.header > .container> .menu{
+    float: right;
+    background: transparent;
+    padding: 10px 20px;
+}
+.header > .container> .menu li::after{
+    background: #4a90e2;
+    height: 2px;
+
+}
+.header > .container> .menu .layui-nav-bar{
+    background-color: #4a90e2;
+    height: 2px;
+}
+.header dl >.layui-this a {
+    background-color: #4a90e2 !important;
+}
+.header > .container> .menu li a{
+    color:#444444;
+    font-size: 16px;
+}
+
+/*页尾*/
+.footer{
+    border-top:1px solid #d2d2d2;
+    min-width: 1200px;
+}
+.footer > .container >p ,.footer > .container >p>span{
+    font-size:16px;
+    color:#999999;
+    text-align:center;
+    padding: 40px 0;
+}
+.footer > .container >p>span{
+    padding-left: 30px;
+}
+
+/*layui 样式*/
+.layui-form-checked[lay-skin=primary] i{
+    border: #1999F1;
+    background: #1999F1;
+}
+.layui-form-select dl dd.layui-this{
+    background: #1999F1;
+}
+.layui-form-checked span{
+    color: #1999F1 !important;
+}
+.layui-form-checkbox[lay-skin=primary] span{
+    margin-bottom: 16px;
+}
+.layui-form-checked[lay-skin=primary] i {
+    border-color: #1999F1 !important;
+    background-color: #1999F1 !important;
+    color: #fff;
+}
+/*button悬停默认样式*/
+button:hover{
+    background: #34ACFF !important;
+}
+
+input{
+    font-size: 14px;
+}
+.agree .layui-form-checkbox i:hover{
+    border: 1px solid #1999F1;
+}
+    /* 上传图片 */
+
+.upload-img{
+    width: 320px;
+    height: 180px;
+    border: 1px solid #ededed;
+    position: relative;
+    background: #fff no-repeat center;
+}
+.upload-img .layui-btn{
+    background:#ededed;
+    border-radius:4px;
+    width:104px;
+    height:26px;
+    line-height: 26px;
+    position: absolute;
+    top: 77px;
+    left: 108px;
+}
+.upload-img img{
+    width: 320px;
+    height: 180px;
+    cursor: pointer;
+}
+
+.upload-img-label{
+    line-height: 180px !important;
+}
+.upload-img-icon{
+    top: 84px !important;
+}
+
+
+/*submit按钮*/
+.form-upload-btn{
+    width: 160px;
+    height: 40px;
+    border-radius: 4px;
+    background: #0c90eb;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+

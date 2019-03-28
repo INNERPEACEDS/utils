@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="common/indexLink :: link"/>
+    <title>下载上传</title>
+</head>
+<body>
+
+
+<div class="layui-body">
+    <div>
+        <td height="30" align="center" colspan="2">
+            <input type="button" class="sybutton" value="返回" onclick="window.history.go(-1);" />
+        </td>
+        <table width="810" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <td align="center">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tb_con_border1">
+                        <tr>
+                            <br/>
+                            <h2>文件下载和上传</h2>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <span>下载一般文件:&nbsp;&nbsp;</span>
+                            </td>
+                            <td width="60%">
+                                <input type="button" class="sybutton" value="下载一般文件" style="width:200px;" onclick="downloadFile();" >
+                            </td>
+                            <br/>&nbsp;
+                            <td>
+                                <form action="upload" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="uploadFile" /><br>
+                                    <input type="submit" value="上传" />
+                                </form>
+                                <input type="text" id="uploadResult" disabled="disabled" th:value="${uploadResult != null ? uploadResult : null}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <div class="layui-form-item merchant-form-important">
+                                <input type="hidden" name="img" id="img" lay-verify="img"/>
+                                <i class="icon-2 form-important-icon upload-img-icon"></i>
+                                <label class="layui-form-label upload-img-label">图片</label>
+                                <div class="layui-input-block upload-img" id="imgUpload">
+                                    <button type="button" class="layui-btn">
+                                        上传图片
+                                    </button>
+                                </div>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="layui-form-item merchant-form-important">
+                                <input type="hidden" name="bizAgreement" id="bizAgreement" lay-verify="bizAgreement"/>
+                                <i class="icon-2 form-important-icon"></i>
+                                <label class="layui-form-label">上传协议</label>
+                                <div class="layui-input-block" id="bizAgreementUpload">
+                                    <button type="button" class="layui-btn" id="bizAgreementBtn">
+                                        <i class="layui-icon layui-icon-upload"></i> 选择文件
+                                    </button>
+                                </div>
+                            </div>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div>
+        <h3>书籍信息</h3>
+        <ul class="screen clearfix">
+            <li>
+                <label>编号：</label>
+                <input type="text" class="layui-input" name="bookId" id="bookId" />
+            </li>
+            <li>
+                <label>书籍名称</label>
+                <input type="text" class="layui-input" name="bookName" id="bookName" />
+            </li>
+            <li>
+                <label>书籍备注</label>
+                <input type="text" class="layui-input" name="bookRemarks" id="bookRemarks" />
+            </li>
+            <li>
+                <label>时间范围</label>
+                <input type="text" class="layui-input" name="bookStartCreateDate" id="bookStartCreateDate" />
+                <i>-</i>
+                <input type="text" class="layui-input" id="bookEndCreateDate" name="bookEndCreateDate" />
+            </li>
+            <li>
+                <button id="queryBooks" data-type="reload">查询</button>
+                <button onclick="downloadBookRecord();">下载</button>
+                <!--为所有的数据修改创建时间-->
+                <button onclick="batchAddDate();">一键添加创建时间</button>
+            </li>
+        </ul>
+    </div>
+    <div class="order-list">
+        <table class="layui-hide" id="bookTable" lay-filter="books"></table>
+    </div>
+    <!--<tr>
+        <td align="right">
+            <span>下载优秀数据记录文件（EXCLE格式）:</span>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <span>序号：</span>
+            <input type="text" id="bookId" width="5px" />
+        </td>
+        <td >
+            <span>书籍名称：</span>
+            <input type="text" id="bookName" width="50px" />
+        </td>
+        <td>
+            <span>备注：</span>
+            <input type="text" id="bookRemarks" width="100" />
+        </td>
+        <td>
+            <input type="button" class="sybutton" value="查询" style="width:30px;" onclick="queryBookRecord();" />
+        </td>
+        <td>
+            <input type="button" class="sybutton" value="下载" style="width:30px;" onclick="downloadBookRecord();" />
+        </td>
+    </tr>-->
+</div>
+
+<script type="text/javascript">
+    //添加请求过滤
+    function addMers(){
+        if(!uploadXls()){
+            return false;
+        }
+        return true;
+    }
+
+    //上传文件检查
+    function uploadXls(){
+        if(confirm("您确定要添加吗？")){
+            var file = $("#uploadFile").val();
+            //判断选的文件存在
+            if(file==null || file==""){
+                alert("请上传批量入驻文件！");
+                return false;
+            }
+            var strs = file.split(".");
+            var extensionName = strs[strs.length-1];
+
+            //判断文件是否为excel格式
+            /*if(extensionName=="xls"){
+                /!* $("#form").submit(); *!/
+            }else{
+                alert("您上传的文件格式不正确，请上传excel格式的文件且后缀为xls！");
+                return false;
+            }*/
+            return true;
+        }
+    };
+    // 下载模板
+    function downloadFile() {
+        window.open("download?fileName=pubKey");
+        /*window.location.href = "<%=request.getContextPath()%>/../../file/download/download.png";*/
+    };
+    // 下载优秀书籍记录
+    function downloadBookRecord() {
+        var bookId = $("#bookId").val();
+        var bookName = $("#bookName").val();
+        var bookRemarks = $("#bookRemarks").val();
+        window.open("downloadBookRecord?id=" + bookId + "&name=" + bookName + "&remarks=" + bookRemarks);
+    }
+    // 查询优秀书籍记录
+    /*function queryBookRecord() {
+        var bookId = $("#bookId").val();
+        var bookName = $("#bookName").val();
+        var bookRemarks = $("#bookRemarks").val();
+        window.open("queryBookRecord?id=" + bookId + "&name=" + bookName + "&remarks=" + bookRemarks);
+    }*/
+    function batchAddDate() {
+        window.open("batchAddCreateDate");
+    }
+</script>
+</body>
+<script type="text/html" id="operating">
+    <a class="layui-btn layui-btn-xs" lay-event="details">详情</a>
+    <a class="layui-btn layui-btn-xs" lay-even="add">添加</a>
+    <a class="layui-btn layui-btn-xs" lay-event="delete">删除</a>
+</script>
+<div th:replace="common/script :: script"></div>
+<script th:inline="none" th:src="@{~/js/query/book.js}" src="static/js/query/book.js"></script>
+</html>

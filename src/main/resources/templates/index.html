@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--<link th:replace="common/indexLink :: link"/>-->
+    <title>欢迎登陆</title>
+    <link th:href="@{~/css/index.css}" rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+<div class="main">
+    <div class="container">
+        <div class="layui-body">
+            <input type="text" id="message" disabled="disabled" th:value="${message != null ? message : null}" />
+            <div>
+                <input type="button" onclick="javascript:window.location.href='downloadAndUpload/page'" value="下载上传" />
+                <!--<input type="button" type="hidden" id="loginInfoId" value="${}" />-->
+                <input type="button" onclick="loginInfo()" name="loginInfo" value="登陆信息提交" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="common/script :: script"></div>
+<script th:inline="none" th:src="@{~/js/index.js}" src="static/js/index.js"></script>
+</html>
+
+
