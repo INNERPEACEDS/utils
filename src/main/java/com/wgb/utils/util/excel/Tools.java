@@ -478,7 +478,7 @@ public class Tools {
 	}
 
 	/**
-	 * 卡号验证 敖炯
+	 * 卡号验证
 	 */
 	public static boolean isNumber(String num) {
 		String regExp = "^\\d*$";
@@ -488,7 +488,7 @@ public class Tools {
 	}
 
 	/**
-	 * 金额验证 敖炯
+	 * 金额验证
 	 */
 	public static boolean isAmt(String amt) {
 		String regExp = "^\\d{1,9}(\\.\\d{1,2})?$";
@@ -561,7 +561,6 @@ public class Tools {
 	 * 将oracle日期转换为字符串数据
 	 *
 	 * @return 日期字符串
-	 * @author yanlong 2017-4-1
 	 */
 	public static String getDateBySqlTimestamp(Object obj, String formatStr) {
 		try {

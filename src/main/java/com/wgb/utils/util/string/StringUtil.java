@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.wgb.utils.util.regular.RegularUtil;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -152,10 +153,27 @@ public class StringUtil {
     }
 
     public static void main(String[] args)  {
-        String a = "";
+        /*String a = "";
         Map map = stringToMap(a);
-        log.info("map:{}", map);
+        log.info("map:{}", map);*/
+        String rate = "6";
+        String rateStr = getThousandthRate(rate);
+        log.info("费率信息：{}", rateStr);
+
+
     }
 
+    /**
+     * 获取千分之一费率：如表示千分之6的费率存放数据为：6，获取后的值为0.006
+     * @param rate
+     * @return
+     */
+    public static String getThousandthRate(String rate) {
+        if (RegularUtil.isNumber(rate)) {
+            BigDecimal rateValue = new BigDecimal(rate).divide(new BigDecimal(1000));
+            rate = rateValue.toString();
+        }
+        return rate;
+    }
 
 }

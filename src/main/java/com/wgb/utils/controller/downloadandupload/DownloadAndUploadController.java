@@ -48,8 +48,6 @@ public class DownloadAndUploadController {
 		downloadService.downloadFile(fileName, request, response);
 	}
 
-
-
 	@RequestMapping("/upload")
 	public String uploadFile(@RequestParam("uploadFile") MultipartFile[]  uploadFiles, Model model) {
 		String forward = "downloadAndUpload/downloadAndUpload";
@@ -62,27 +60,5 @@ public class DownloadAndUploadController {
 			log.error(uploadResult);
 		}
 		return forward;
-	}
-
-	@RequestMapping("/uploadByFastDFS")
-	public Result<Map<String, String>> uploadFileBy(MultipartFile multipartFile) {
-		log.info("开始上传");
-		if (multipartFile == null || multipartFile.isEmpty()) {
-			return new Result<>(ResultEnum.UPLOAD_EXCEPTION);
-		}
-		if (!FileUtil.isNeedFileType(multipartFile.getOriginalFilename())) {
-			return new Result<>(ResultEnum.UPLOAD_TYPE_EXCEPTION);
-		}
-        try {
-            FastDFSClient fastDFSClient = new FastDFSClient();
-            String fileId = fastDFSClient.upload(multipartFile.getBytes(), fastDFSClient.getFileNamePrefix(multipartFile.getOriginalFilename()));
-            Map<String, String> map = new HashMap<>(2);
-            map.put("fileId", fileId);
-            map.put("url", fastDFSClient.getUrl(fileId));
-            return new Result<>(ResultEnum.SUCCESS,map);
-        } catch (IOException | MyException | NoSuchAlgorithmException e) {
-            log.error("文件上传失败，文件名{}", multipartFile.getOriginalFilename(), e);
-            return new Result<>(ResultEnum.UPLOAD_EXCEPTION);
-        }
 	}
 }

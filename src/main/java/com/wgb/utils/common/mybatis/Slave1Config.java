@@ -13,38 +13,36 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
 import javax.sql.DataSource;
 
 /**
- * @author : innerpeace
- * @date : 2018/11/30 16:53
- */
+ * @author INNERPEACE
+ * @date 2019/3/29 16:54
+ **/
 @Slf4j
 @Configuration
-// @MapperScan(basePackages = "com.wgb.utils.dao.oracle", sqlSessionTemplateRef = "oracleSqlSessionTemplate")
-public class OracleConfig {
+// @MapperScan(basePackages = "com.wgb.utils.dao.oracle", sqlSessionTemplateRef = "slave1SqlSessionTemplate")
+public class Slave1Config {
 	/**
-	 * 创建数据源 oracle
-	 *
+	 * 创建数据源 slave1DataSource
 	 */
-	@Bean(name = "oracleDataSource")
-	@ConfigurationProperties(prefix = "spring.datasource.oracle")
-	public DataSource oracleDataSource() {
-		log.info("创建oracle数据源");
+	@Bean(name = "slave1DataSource")
+	@ConfigurationProperties(prefix = "spring.datasource.slave1")
+	public DataSource slave1DataSource() {
+		log.info("创建slave1DataSource数据源");
 		return DataSourceBuilder.create().build();
 	}
-
-	/**
+/*
+	*//**
 	 * 创建sql工场
 	 *
 	 * @param dataSource 数据源
 	 * @return 工场
 	 * @throws Exception 创建异常
-	 */
-	@Bean(name = "oracleSqlSessionFactory")
+	 *//*
+	@Bean(name = "slave1SqlSessionFactory")
 	@Primary
-	public SqlSessionFactory oracleSqlSessionFactory(@Qualifier("oracleDataSource") DataSource dataSource)
+	public SqlSessionFactory slave1SqlSessionFactory(@Qualifier("slave1DataSource") DataSource dataSource)
 			throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource);
@@ -56,16 +54,18 @@ public class OracleConfig {
 		return bean.getObject();
 	}
 
-	@Bean(name = "oracleTransactionManager")
+	@Bean(name = "slave1TransactionManager")
 	@Primary
-	public DataSourceTransactionManager oracleTransactionManager(@Qualifier("oracleDataSource") DataSource dataSource) {
+	public DataSourceTransactionManager slave1TransactionManager(@Qualifier("slave1DataSource") DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);
 	}
 
-	@Bean(name = "oracleSqlSessionTemplate")
+	@Bean(name = "slave1SqlSessionTemplate")
 	@Primary
-	public SqlSessionTemplate oracleSqlSessionTemplate(
-			@Qualifier("oracleSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+	public SqlSessionTemplate slave1SqlSessionTemplate(
+			@Qualifier("slave1SqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory);
-	}
+	}*/
 }
+
+

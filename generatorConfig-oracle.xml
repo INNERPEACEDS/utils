@@ -18,7 +18,7 @@
         <!--数据库连接信息 -->
         <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
                         connectionURL="jdbc:oracle:thin:@127.0.0.1:1521/XE"
-                        userId="wgb"
+                        userId="Thinking"
                         password="love"/>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>

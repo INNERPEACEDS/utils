@@ -1,5 +1,6 @@
 package com.wgb.utils.controller.downloadandupload;
 
+import com.wgb.utils.common.mybatis.DynamicDataSourceSwitch;
 import com.wgb.utils.entity.oracle.dto.BookRecordDTO;
 import com.wgb.utils.entity.oracle.BookRecord;
 import com.wgb.utils.service.download.DownloadService;
@@ -54,6 +55,7 @@ public class DownloadBookRecordController {
 
 			log.info("下载-查询参数：[id]-[{}],[name]-[{}],[remarks]-[{}]", bookRecordDTO.getId(), bookRecordDTO.getName(), bookRecordDTO.getRemarks());
 			// 根据查询条件查询优秀书籍信息
+			DynamicDataSourceSwitch.setRouteKey("slave1");
 			List<BookRecord> listInfo = downloadService.getBookRecordInfo(bookRecordDTO);
 			if (response != null && listInfo != null) {
 				org.apache.poi.ss.usermodel.Workbook workbook= ExcelUtil.createWorkbook(2007, sheetName, baseInfs, listInfo);

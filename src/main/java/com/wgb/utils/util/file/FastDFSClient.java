@@ -245,7 +245,6 @@ public class FastDFSClient {
                 .indexOf(StorageClient1.SPLIT_GROUP_NAME_AND_FILENAME_SEPERATOR);
     }
 
-
     /**
      * 上传文件
      *

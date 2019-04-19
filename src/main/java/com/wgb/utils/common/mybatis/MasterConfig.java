@@ -1,11 +1,17 @@
 package com.wgb.utils.common.mybatis;
 
+/**
+ * @author INNERPEACE
+ * @date 2019/3/29 16:40
+ **/
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -13,38 +19,33 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
 import javax.sql.DataSource;
-
-/**
- * @author : innerpeace
- * @date : 2018/11/30 16:53
- */
 @Slf4j
 @Configuration
-// @MapperScan(basePackages = "com.wgb.utils.dao.oracle", sqlSessionTemplateRef = "oracleSqlSessionTemplate")
-public class OracleConfig {
+@EnableAutoConfiguration
+// @MapperScan(basePackages = "com.wgb.utils.dao.oracle", sqlSessionTemplateRef = "masterSqlSessionTemplate")
+public class MasterConfig {
 	/**
-	 * 创建数据源 oracle
-	 *
+	 * 创建数据源 masterDataSource
 	 */
-	@Bean(name = "oracleDataSource")
-	@ConfigurationProperties(prefix = "spring.datasource.oracle")
-	public DataSource oracleDataSource() {
-		log.info("创建oracle数据源");
-		return DataSourceBuilder.create().build();
+	@Bean(name = "masterDataSource")
+	@ConfigurationProperties(prefix = "spring.datasource.master")
+	public DataSource masterDataSource() {
+		DataSource masterDataSource = DataSourceBuilder.create().build();
+		log.info("创建masterDataSource数据源,数据源为：{}", masterDataSource);
+		return masterDataSource;
 	}
-
-	/**
+/*
+	*//**
 	 * 创建sql工场
 	 *
 	 * @param dataSource 数据源
 	 * @return 工场
 	 * @throws Exception 创建异常
-	 */
-	@Bean(name = "oracleSqlSessionFactory")
+	 *//*
+	@Bean(name = "masterSqlSessionFactory")
 	@Primary
-	public SqlSessionFactory oracleSqlSessionFactory(@Qualifier("oracleDataSource") DataSource dataSource)
+	public SqlSessionFactory masterSqlSessionFactory(@Qualifier("masterDataSource") DataSource dataSource)
 			throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dataSource);
@@ -56,16 +57,17 @@ public class OracleConfig {
 		return bean.getObject();
 	}
 
-	@Bean(name = "oracleTransactionManager")
+	@Bean(name = "masterTransactionManager")
 	@Primary
-	public DataSourceTransactionManager oracleTransactionManager(@Qualifier("oracleDataSource") DataSource dataSource) {
+	public DataSourceTransactionManager masterTransactionManager(@Qualifier("masterDataSource") DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);
 	}
 
-	@Bean(name = "oracleSqlSessionTemplate")
+	@Bean(name = "masterSqlSessionTemplate")
 	@Primary
-	public SqlSessionTemplate oracleSqlSessionTemplate(
-			@Qualifier("oracleSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+	public SqlSessionTemplate masterSqlSessionTemplate(
+			@Qualifier("masterSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory);
-	}
+	}*/
 }
+

@@ -162,4 +162,9 @@ public class BookRecord {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "ID:" + id + ",NAME:" + name + ",REMARKS:" + remarks + ",UPDATETIME:" + updateTime + ",CREATETIME:" +  createTime;
+    }
 }

@@ -1,5 +1,6 @@
 package com.wgb.utils.util.file;
 
+import com.wgb.utils.util.constants.file.ImageFileConstant;
 import com.wgb.utils.util.string.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,9 +15,17 @@ import java.util.*;
 public class FileUtil {
     private static List<String> defaultNeedFileType = new ArrayList<String>(
             Arrays.asList(
-                    ".txt", ".html", ".jpg", "bmp", ".png", ".zip"
+                    ".txt", ".html", ".jpg", "bmp", ".png", ".zip", ".gif", ".jpeg", ".rar"
             )
     );
+
+    private static List<String> imageFileType = new ArrayList<String>(
+            Arrays.asList(ImageFileConstant.SUFFIX_BMP, ImageFileConstant.SUFFIX_GIF, ImageFileConstant.SUFFIX_GPEG, ImageFileConstant.SUFFIX_JPG, ImageFileConstant.SUFFIX_PNG)
+    );
+
+    public static boolean isImageFileType(String fileName) {
+        return isNeedFileType(fileName, imageFileType);
+    }
 
     public static boolean isNeedFileType(String fileName) {
         return isNeedFileType(fileName, defaultNeedFileType);

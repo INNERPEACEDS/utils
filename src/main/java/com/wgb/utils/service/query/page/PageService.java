@@ -6,6 +6,8 @@ import com.wgb.utils.entity.oracle.BookRecord;
 import com.wgb.utils.entity.oracle.dto.BookRecordDTO;
 import com.wgb.utils.entity.result.Result;
 
+import java.util.List;
+
 /**
  * @author : innerpeace
  * @date : 2018/12/11 16:06
@@ -18,4 +20,7 @@ public interface PageService {
 	 * @return
 	 */
 	Result<PageInfo<BookRecord>> queryBookRecordByDTO(BookRecordDTO bookRecordDTO);
+
+	Result<List<BookRecord>> queryBookRecordByBookRecord(BookRecord bookRecord);
+
 }

@@ -20,13 +20,13 @@ import javax.validation.Valid;
 public class AuthController {
     @RequestMapping("/loginInfo")
     public String loginInfo(@Valid UserDTO userDTO, BindingResult bindingResult, Model model) {
-        String message = "提交成功";
+        String message = "提交成功已成功了呀,请勿重复提交呢";
         if (bindingResult.hasErrors()) {
             return BindingResultUtil.bindingResultHasError(bindingResult, model, "index");
         }
 
         log.info("用户信息：[商户姓名：{}，商户年龄：{}，商户性别：{}]", userDTO.getName(), userDTO.getAge(), userDTO.getSex());
-
+        log.info("结果：{}", message);
         model.addAttribute(Constant.MESSAGE, message);
         return "index";
     }

@@ -94,4 +94,8 @@ public class PageServiceImpl implements PageService {
 		}
 		return new Result<>(ResultEnum.FAIL);
 	}
+	@Override
+	public Result<List<BookRecord>> queryBookRecordByBookRecord(BookRecord bookRecord) {
+		return null;
+	}
 }
