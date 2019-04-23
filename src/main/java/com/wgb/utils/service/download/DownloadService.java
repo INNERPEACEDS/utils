@@ -2,6 +2,7 @@ package com.wgb.utils.service.download;
 
 import com.wgb.utils.entity.oracle.dto.BookRecordDTO;
 import com.wgb.utils.entity.oracle.BookRecord;
+import com.wgb.utils.entity.oracle.vo.BookRecordVO;
 import com.wgb.utils.util.excel.download.BaseInf;
 import org.springframework.stereotype.Repository;
 
@@ -36,4 +37,5 @@ public interface DownloadService {
 	 * @return
 	 */
 	List<BookRecord> getBookRecordInfo(BookRecordDTO bookRecordDTO);
+
 }

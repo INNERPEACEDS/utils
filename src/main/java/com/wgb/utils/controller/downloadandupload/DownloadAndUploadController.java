@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 在服务器指定地址上传下载
  * @author : innerpeace
  * @date : 2018/11/29 16:07
  */

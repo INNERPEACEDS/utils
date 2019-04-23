@@ -22,6 +22,13 @@ public class DateUtil {
     public static final String TIME_START = "00:00:00";
     public static final String TIME_END = "23:59:59";
 
+    public static final String FULL_FORMAT_STR = "yyyyMMddHHmmss";
+
+    public static String getFullFormatStrByCurrentDate() {
+        SimpleDateFormat sdf =   new SimpleDateFormat(FULL_FORMAT_STR);
+        return sdf.format(new Date());
+    }
+
     /**
      * 是否小于三天
      *

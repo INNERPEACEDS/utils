@@ -1,10 +1,16 @@
 package com.wgb.utils.controller.downloadandupload;
 
+import com.github.pagehelper.PageInfo;
 import com.wgb.utils.common.mybatis.DynamicDataSourceSwitch;
 import com.wgb.utils.entity.oracle.dto.BookRecordDTO;
 import com.wgb.utils.entity.oracle.BookRecord;
+import com.wgb.utils.entity.oracle.vo.BookRecordVO;
+import com.wgb.utils.entity.result.Result;
 import com.wgb.utils.service.download.DownloadService;
+import com.wgb.utils.service.query.page.PageService;
+import com.wgb.utils.util.excel.alibaba.ExcelUtils;
 import com.wgb.utils.util.excel.download.BaseInf;
+// import com.wgb.utils.util.excel.download.ExcelUtil;
 import com.wgb.utils.util.excel.download.ExcelUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +40,15 @@ public class DownloadBookRecordController {
 	@Autowired
 	DownloadService downloadService;
 
+	@Autowired
+	PageService pageService;
+
 	/**
 	 * 优秀书籍下载
 	 * @return
 	 */
 	@RequestMapping("/downloadBookRecord")
-	public String bookRecord(@Valid BookRecordDTO bookRecordDTO, HttpServletRequest request, HttpServletResponse response) {
+	public String downloadBookRecord(@Valid BookRecordDTO bookRecordDTO, HttpServletRequest request, HttpServletResponse response) {
 		// 文件前缀
 		String filePrefix = "优秀书籍";
 		// 文件格式后缀
@@ -64,6 +73,37 @@ public class DownloadBookRecordController {
 			}
 		} catch(Exception e) {
 			log.info("下载失败", e);
+		}
+		return null;
+	}
+
+	/**
+	 * 优秀书籍下载(采用阿里工具)
+	 * 需要更换poi版本为4.1.0或者其他支持版本（3.7版本不支持此功能）
+	 * @return
+	 */
+	@RequestMapping("/downloadBookRecord1")
+	public String downloadBookRecord1(@Valid BookRecordDTO bookRecordDTO, HttpServletRequest request, HttpServletResponse response) {
+		// 文件前缀
+		String filePrefix = "优秀书籍";
+		// 文件格式后缀
+		String fileSuffix = ".xls";
+		// 文件名称
+		String fileName = filePrefix + sdf.format(new Date());
+		// excle中单个表sheet名称
+		String sheetName = "书籍推荐";
+		try {
+			log.info("下载-查询参数：[id]-[{}],[name]-[{}],[remarks]-[{}]", bookRecordDTO.getId(), bookRecordDTO.getName(), bookRecordDTO.getRemarks());
+			log.info("查询参数信息：[编号：{}；名称：{}；备注：{}；日期范围：({}-{}){}-{}]", bookRecordDTO.getId(), bookRecordDTO.getName(), bookRecordDTO.getRemarks(), bookRecordDTO.getStartCreateDate(), bookRecordDTO.getEndCreateDate(), bookRecordDTO.getStartCreateTime(),bookRecordDTO.getStartTime());
+			// 根据查询条件查询优秀书籍信息
+			DynamicDataSourceSwitch.setRouteKey("slave1");
+			String type = "1";
+			Result<List<BookRecord>> listInfo = (Result<List<BookRecord>>)pageService.queryBookRecordByDTO(bookRecordDTO, type);
+			// List<BookRecord> listInfo = downloadService.getBookRecordInfo(bookRecordDTO.);
+			ExcelUtils.export(listInfo.getData(), response, BookRecordVO.class);
+		} catch(Exception e) {
+			log.info("下载失败", e);
+			log.error("需要更改poi版本");
 		}
 		return null;
 	}

@@ -12,4 +12,14 @@ public class ControllerConstant {
 	 */
 	public static String BOOK_RECORD = "书籍记录";
 
+	/**
+	 * 查询标识
+	 */
+	public static final String SIGN_QUERY = "0";
+
+	/**
+	 * 下载标识
+	 */
+	public static final String SIGN_DOWNLOAD = "1";
+
 }

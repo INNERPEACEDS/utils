@@ -38,7 +38,18 @@ function downloadBookRecord() {
     var bookId = $("#bookId").val();
     var bookName = $("#bookName").val();
     var bookRemarks = $("#bookRemarks").val();
-    window.open("downloadBookRecord?id=" + bookId + "&name=" + bookName + "&remarks=" + bookRemarks);
+    var bookStartCreateDate = $("#bookStartCreateDate").val();
+    var bookEndCreateDate = $("#bookEndCreateDate").val();
+    window.open("downloadBookRecord?id=" + bookId + "&name=" + bookName + "&remarks=" + bookRemarks + "&startCreateDate=" +　bookStartCreateDate + "&endCreateDate=" + bookEndCreateDate);
+}
+function downloadBookRecord1() {
+    var bookId = $("#bookId").val();
+    var bookName = $("#bookName").val();
+
+    var bookRemarks = $("#bookRemarks").val();
+    var bookStartCreateDate = $("#bookStartCreateDate").val();
+    var bookEndCreateDate = $("#bookEndCreateDate").val();
+    window.open("downloadBookRecord1?id=" + bookId + "&name=" + bookName + "&remarks=" + bookRemarks + "&startCreateDate=" +　bookStartCreateDate + "&endCreateDate=" + bookEndCreateDate);
 }
 // 查询优秀书籍记录
 /*function queryBookRecord() {
@@ -49,4 +60,8 @@ function downloadBookRecord() {
 }*/
 function batchAddDate() {
     window.open("batchAddCreateDate");
+}
+function getImage() {
+    var serial = $("#serial").val();
+    window.open("getImage?id=" + serial, "_self");
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:float="http://www.w3.org/1999/xhtml">
+      xmlns:float="http://www.w3.org/1999/xhtml" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <link th:replace="common/indexLink :: link"/>
@@ -10,10 +10,8 @@
 </head>
 <body>
 
-
 <div class="layui-body">
     <div>
-
         <table width="810" border="0" cellspacing="0" cellpadding="0" align="center">
             <tr>
                 <td align="center">
@@ -23,14 +21,24 @@
                 </td>
             </tr>
         </table>
-
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tb_con_border1">
+            <tr>
+                <div>
+                    <input id="serial" name="serial" placeholder="请输入想要获取图片的序号(uuid生成的id)" />
+                    <button onclick="getImage();">获取</button>
+                </div>
+                <div th:if="${imageAddress != null}">
+                    <img id="imgInfo" data-action="zoom" class="pull-left" width="150px" height="100px" th:src="${imageAddress}">
+                </div>
+                <!--<div th:if="${imageAddress != null}">
+                    <a th:href="@{${imageAddress}}" th:text="${imageAddress}">测试</a>
+                 </div>-->
+            </tr>
             <tr>
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                     <legend>文件下载和上传</legend>
                 </fieldset>
             </tr>
-
             <tr>
                 <div class="layui-form-item merchant-form-important">
                     <input type="hidden" name="img" id="img" lay-verify="img"/>
@@ -138,13 +146,14 @@
                     <span>
                         <input type="text" class="layui-input" name="bookStartCreateDate" id="bookStartCreateDate" />
                         <i>-</i>
-                        <input type="text" class="layui-input" id="bookEndCreateDate" name="bookEndCreateDate" />
+                        <input type="text" class="layui-input" name="bookEndCreateDate" id="bookEndCreateDate" />
                     </span>
                 </div>
             </div>
             <div class="layui-inline">
                 <button id="queryBooks" data-type="reload">查询</button>
                 <button onclick="downloadBookRecord();">下载</button>
+                <button onclick="downloadBookRecord1();">下载(使用阿里工具方式)</button>
                 &lt;!&ndash;为所有的数据修改创建时间&ndash;&gt;
                 <button onclick="batchAddDate();">一键添加创建时间</button>
                 <!--<label class="layui-form-label">日期时间范围</label>

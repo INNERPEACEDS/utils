@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.csource.common.MyException;
 import org.csource.common.NameValuePair;
 import org.csource.fastdfs.*;
+import sun.misc.BASE64Encoder;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -177,6 +179,29 @@ public class FastDFSClient {
         }
         return fileUrl;
     }
+
+    /**
+     * 获取图片实际地址
+     * @param fileId 文件编号：group1/M00/00/00/wKgABVmT1TaAQIqnAACE6Tcpens217
+     * @return 图片转换的base64地址为
+     */
+    public static String getRealPath(String fileId){
+        String realPath="";
+        if(fileId!=null && !"".equals(fileId)){
+            try {
+                FastDFSClient client = new FastDFSClient();
+                byte[] rp=client.downloadFile(fileId);
+                if (rp != null && rp.length > 0) {
+                    BASE64Encoder encoder = new BASE64Encoder();
+                    realPath="data:image/jpg/png/gif/bmp/jpeg;base64,"+encoder.encode(rp);
+                }
+            } catch (Exception e) {
+                log.error("[图片下载失败]", e);
+            }
+        }
+        return realPath;
+    }
+
 
     /**
      * 用户可获取实例后，自行调用需要的方法

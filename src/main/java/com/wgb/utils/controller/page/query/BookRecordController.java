@@ -64,7 +64,8 @@ public class BookRecordController {
         }
         log.info("开始查询{}：", CONTROLLER_NAME);
         log.info("查询参数信息：[编号：{}；名称：{}；备注：{}；日期范围：({}-{}){}-{}]", bookRecordDTO.getId(), bookRecordDTO.getName(), bookRecordDTO.getRemarks(), bookRecordDTO.getStartCreateDate(), bookRecordDTO.getEndCreateDate(), bookRecordDTO.getStartCreateTime(),bookRecordDTO.getStartTime());
-        Result<PageInfo<BookRecord>> result = pageService.queryBookRecordByDTO(bookRecordDTO);
+        String type = "0";
+        Result<PageInfo<BookRecord>> result = (Result<PageInfo<BookRecord>>)pageService.queryBookRecordByDTO(bookRecordDTO, type);
         if (result.isFail()) {
             return new Result(ResultEnum.FAIL);
         }

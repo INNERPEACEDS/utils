@@ -1,11 +1,8 @@
 package com.wgb.utils.service.query.page;
 
-
-import com.github.pagehelper.PageInfo;
 import com.wgb.utils.entity.oracle.BookRecord;
 import com.wgb.utils.entity.oracle.dto.BookRecordDTO;
 import com.wgb.utils.entity.result.Result;
-
 import java.util.List;
 
 /**
@@ -17,9 +14,10 @@ public interface PageService {
 	/**
 	 * 分页查询优秀书籍
 	 * @param bookRecordDTO
+	 * @param type “0”=查询；“1”=下载
 	 * @return
 	 */
-	Result<PageInfo<BookRecord>> queryBookRecordByDTO(BookRecordDTO bookRecordDTO);
+	Result<?> queryBookRecordByDTO(BookRecordDTO bookRecordDTO, String type);
 
 	Result<List<BookRecord>> queryBookRecordByBookRecord(BookRecord bookRecord);
 

@@ -44,127 +44,15 @@
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-
-
         <!--对应数据库表名  schema:数据库命名空间  tableName:表名 -->
         <!-- 如果不需要 example 则在table标签中添加   enableCountByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false" -->
-        <table schema="wgb" tableName="BOOKRECORD" domainObjectName="BookRecord">
+        <!--<table schema="wgb" tableName="BOOKRECORD" domainObjectName="BookRecord">
+            <property name="useActualColumnNames" value="false" />
+        </table>-->
+        <table tableName="IMAGE" domainObjectName="Image">
             <property name="useActualColumnNames" value="false" />
         </table>
-        <!--
-        <table schema="epaysch" tableName="TTRANSACTIONTYPE" domainObjectName="TtransactionType">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TMERLOGUSER" domainObjectName="Tmerloguser">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TMERLOGUSER_EXT" domainObjectName="TmerloguserExt">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TMERMENU" domainObjectName="Tmermenu">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TACCOUNT" domainObjectName="Taccount">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TDATADIC" domainObjectName="Tdatadic">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TMERINFO" domainObjectName="Tmerinfo">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="MERNOTICE" domainObjectName="Mernotice">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TMERUSERROLE" domainObjectName="Tmeruserrole">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TMERMENUROLE" domainObjectName="Tmermenurole">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TMERMENU" domainObjectName="Tmermenu">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="MERNOTICE" domainObjectName="Mernotice">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="MERNOTICEHISTORY" domainObjectName="Mernoticehistory">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table schema="epaysch" tableName="TACCOUNTDETAIL" domainObjectName="Taccountdetail">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        -->
-       <!-- <table schema="epaysch" tableName="MER_CERT_INF" domainObjectName="MerCert">
-            <property name="useActualColumnNames" value="=false"/>
-        </table>-->
-        <!--<table schema="epaysch" tableName="MER_CERT_TOKEN_INF" domainObjectName="MerCertToken">
-            <property name="useActualColumnNames" value="false"/>
-        </table>-->
-        <!--<table schema="epaysch" tableName="MER_SYS_BIND" domainObjectName="MerSysBind">
-            <property name="useActualColumnNames" value="false"/>
-        </table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_LOG" domainObjectName="MerSysLog" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_PERMISSION" domainObjectName="MerSysPermission" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_RATE" domainObjectName="MerSysRate" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_RATE_TYPE" domainObjectName="MerSysRateType" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_ROLE" domainObjectName="MerSysRole" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_ROLE_PERMISSION" domainObjectName="MerSysRolePermission" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_USER" domainObjectName="MerSysUser">
-            <property name="useActualColumnNames" value="false"/>
-        </table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_USER_RATE" domainObjectName="MerSysUserRate" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-
-        <!--<table schema="epaysch" tableName="MER_SYS_USER_ROLE" domainObjectName="MerSysUserRole">-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_USER_INFO" domainObjectName="MerSysUserInfo">
-            <property name="useActualColumnNames" value="false"/>
-        </table>-->
-
-        <!--<table schema="epaysch" tableName="T_REGION_INFO" domainObjectName="RegionInfo" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="T_PMS_BANK_INFO" domainObjectName="PmsBankInfo" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-        <!--<table schema="epaysch" tableName="TBANKMORE" domainObjectName="BankMore" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-        <!--<table schema="epaysch" tableName="TORDER" domainObjectName="Order" >-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
-        <!--<table schema="epaysch" tableName="MER_SYS_BIZ_CATEGORY" domainObjectName="MerSysBizCategory">-->
-        <!--<property name="useActualColumnNames" value="false"/>-->
-        <!--</table>-->
-
     </context>
 </generatorConfiguration>

@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Excel工具类
- * @author Alance 2018年08月14日09:25:57
+ * Excel工具类(使用poi3.7版本)
+ * @author 2018年08月14日09:25:57
  */
 public class ExcelUtil {
     private ExcelUtil() {

@@ -8,6 +8,7 @@ import com.wgb.utils.entity.oracle.dto.BookRecordDTO;
 import com.wgb.utils.entity.result.Result;
 import com.wgb.utils.entity.result.ResultEnum;
 import com.wgb.utils.service.query.page.PageService;
+import com.wgb.utils.util.constants.controller.ControllerConstant;
 import com.wgb.utils.util.date.DateUtil;
 import com.wgb.utils.util.string.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class PageServiceImpl implements PageService {
 	private BookRecordMapper bookRecordMapper;
 
 	@Override
-	public Result<PageInfo<BookRecord>> queryBookRecordByDTO(BookRecordDTO bookRecordDTO) {
+	public Result<?> queryBookRecordByDTO(BookRecordDTO bookRecordDTO, String type) {
 		// 处理空数据（获取的值可能为"",数据库中查询无结果，应该处理数据）
 		if (StringUtil.isBlankParam(bookRecordDTO.getId())) {
 			bookRecordDTO.setId(null);
@@ -81,19 +82,24 @@ public class PageServiceImpl implements PageService {
             log.info("[开始时间范围：{}]-[结束时间范围：{}]", bookRecordDTO.getStartTime(), bookRecordDTO.getEndTime());
             // log.info("对应值比较[{}]-[{}]", bookRecordDTO.getStartTime(), bookRecordDTO.getEndTime() == "");
 			// 分页
-			PageHelper.startPage(bookRecordDTO.getPageNum(), bookRecordDTO.getPageSize());
+			if (ControllerConstant.SIGN_QUERY.equals(type)) {
+				PageHelper.startPage(bookRecordDTO.getPageNum(), bookRecordDTO.getPageSize());
+			}
 			List<BookRecord> list = bookRecordMapper.getBookRecordByDTO(bookRecordDTO);
 			int i = 0;
 			for (BookRecord bookRecord : list) {
 				log.info("数据{}：{}", ++i, bookRecord);
-
 			}
-			return new Result<>(ResultEnum.SUCCESS, new PageInfo<>(list));
+			if (ControllerConstant.SIGN_QUERY.equals(type)) {
+				return new Result<>(ResultEnum.SUCCESS, new PageInfo<>(list));
+			}
+			return new Result<>(ResultEnum.SUCCESS, list);
 		} catch (Exception e) {
 			log.error("书籍查询异常，查询条件{}", bookRecordDTO, e);
 		}
 		return new Result<>(ResultEnum.FAIL);
 	}
+
 	@Override
 	public Result<List<BookRecord>> queryBookRecordByBookRecord(BookRecord bookRecord) {
 		return null;
