@@ -168,7 +168,7 @@ public class Email {
 	}
 
 	private static final String  PLACEHOLDER = "{{content}}";
-	private static String temp = "<html><head><style>body{margin:0;padding:0;font-size:14px}.mail{width:680px;padding:10px 30px;background:#fff;border:10px solid #eee}.mail_title{width: 229px;height: 63px;background:url(http://impl.com/images/ielpm_ico.png) no-repeat 0 0;border-bottom:1px dashed #adacac;height:70px}.mail p{margin:20px 30px;line-height:26px}.mail p .a1{color:#1e5494;text-decoration:underline}.mail_fot{border-top:1px dashed #adacac;padding:10px 0 10px 0}.mail_fot p{color:#999;font-size:12px;line-height:18px}</style></head><body><div class=\"mail\"><div class=\"mail_title\"></div>" + PLACEHOLDER + "<div class=\"mail_fot\"><p>本邮件由系统自动发出，请勿直接回复！<br>如有疑问会建议，请联系易联客服，24小时客服电话：010-53500763/764。<br>网址：http://www.impl.com/</p></div></div></body></html>";
+	private static String temp = "<html><head><style>body{margin:0;padding:0;font-size:14px}.mail{width:680px;padding:10px 30px;background:#fff;border:10px solid #eee}.mail_title{width: 229px;height: 63px;background:url(http://impl.com/images/innerpeace_ico.png) no-repeat 0 0;border-bottom:1px dashed #adacac;height:70px}.mail p{margin:20px 30px;line-height:26px}.mail p .a1{color:#1e5494;text-decoration:underline}.mail_fot{border-top:1px dashed #adacac;padding:10px 0 10px 0}.mail_fot p{color:#999;font-size:12px;line-height:18px}</style></head><body><div class=\"mail\"><div class=\"mail_title\"></div>" + PLACEHOLDER + "<div class=\"mail_fot\"><p>本邮件由系统自动发出，请勿直接回复！<br>如有疑问会建议，请联系易联客服，24小时客服电话：010-53500763/764。<br>网址：http://www.impl.com/</p></div></div></body></html>";
 
 	/**
 	 * 填充邮件模板
@@ -178,37 +178,4 @@ public class Email {
 	private static String buildEmailContent(String content){
 		return temp.replace(PLACEHOLDER, content);
 	}
-
-//	public static void main(String[] args) throws EmailException {
-//		System.out.println("开始发送");
-////		int port = 993;
-//		int port = 465;
-////		String username = "ys.pay@impl.com";
-////		String password = "Yishi2015";
-//		String username = "yan.long@impl.com";
-//		String password = "Yan1234567";
-//		String from = username;
-//		String host = "smtp."+username.split("@")[1];
-//		String receiverTo = "3442354428@qq.com";
-//		String receiverCc = "";
-//		String subject = "上海易势商户开户信息-----------(测试邮件)";
-//		String content = "<p>尊敬的测试公司：</p>\r\n \n"
-//				+"<p>我是上海易势商务服务有限公司，以下为贵司的开户重要信息，请注意保密：<br/>\r\n \n"
-//				+"商户系统登录地址：https://pay.ielpm.com/ <br/>\r\n"
-//				+"商户号：<br/> \r\n"
-//				+"登录名：<br/> \r\n"
-//				+"登录密码/支付密码：<br/>\r\n"
-//				+"如有问题请关注易势公众号（<strong>yishipay</strong>）咨询。<br/>\r\n "
-//				+"附件为商户系统使用说明。请查收！<br/>\r\n \n"
-//				+"温馨提示：<br/>\r\n"
-//				+"为安全起见，新申请的账号，首次登录后请立即修改初始密码。</p><br/>\r\n";
-//		//附件
-//		String path = "d:"+File.separator;
-//		String filePath = path+"File"+File.separator+"新版易势支付-商户系统操作说明 .docx";
-//		boolean isSSL = true;
-//		Email emailClient = new Email(host, port, username, password, from, isSSL);
-//		boolean res = emailClient.send(subject, content, receiverTo, receiverCc, filePath);
-//		System.out.println(res);
-//		System.out.println("发送完毕");
-//	}
 }

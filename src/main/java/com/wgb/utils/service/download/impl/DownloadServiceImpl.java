@@ -119,6 +119,10 @@ public class DownloadServiceImpl implements DownloadService {
 		baseInfs.add(baseInf);
 		baseInf = new BaseInf("备注", "getRemarks");
 		baseInfs.add(baseInf);
+		baseInf = new BaseInf("创建时间", "getUpdateTime");
+		baseInfs.add(baseInf);
+		baseInf = new BaseInf("更新时间", "getCreateTime");
+		baseInfs.add(baseInf);
 		return baseInfs;
 	}
 

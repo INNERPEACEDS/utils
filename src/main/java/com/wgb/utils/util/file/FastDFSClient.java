@@ -24,7 +24,6 @@ import java.security.NoSuchAlgorithmException;
  * <version>1.27</version>
  * </dependency>
  *
- * @author zzw
  * @date 2017-08-16
  */
 @Slf4j
@@ -276,7 +275,6 @@ public class FastDFSClient {
      * @param inStream    输入流
      * @param fileExtName 文件后缀名
      * @return 文件地址
-     * @author yanlong
      * @date 2017-8-18
      */
     public String upload(InputStream inStream, String fileExtName)

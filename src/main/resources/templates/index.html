@@ -5,16 +5,18 @@
     <!--<link th:replace="common/indexLink :: link"/>-->
     <title>欢迎登陆</title>
     <link th:href="@{~/css/index.css}" rel="stylesheet" href="/static/css/index.css">
+    <link th:replace="common/indexLink :: link"/>
+    <link rel="stylesheet" th:href="@{~/lib/select2/css/select2.min.css}" href="/static/lib/select2/css/select2.min.css"/>
 </head>
 <body>
-<div class="main">
-    <div class="container">
-        <div class="layui-body">
-            <input type="text" id="message" disabled="disabled" th:value="${message != null ? message : null}" />
+    <div class="layui-body">
+        <input type="text" id="message" disabled="disabled" th:value="${message != null ? message : null}" />
             <div>
-                <input type="button" onclick="javascript:window.location.href='downloadAndUpload/page'" value="下载上传" />
+                <button onclick="javascript:window.location.href='downloadAndUpload/page'" value="下载上传">下载上传</button>
+                <!--<input type="button" onclick="javascript:window.location.href='downloadAndUpload/page'" value="下载上传" />-->
                 <!--<input type="button" type="hidden" id="loginInfoId" value="${}" />-->
-                <input type="button" onclick="loginInfo()" name="loginInfo" value="登陆信息提交" />
+                <button onclick="loginInfo()" name="loginInfo" >登录信息提交</button>
+                <!--<input type="button" onclick="loginInfo()" name="loginInfo" value="登陆信息提交" />-->
             </div>
         </div>
     </div>
@@ -22,6 +24,8 @@
 </body>
 <div th:replace="common/script :: script"></div>
 <script th:inline="none" th:src="@{~/js/index.js}" src="static/js/index.js"></script>
+<script th:src="@{~/lib/select2/js/select2.min.js}" src="/static/lib/select2/js/select2.min.js"></script>
+<script th:src="@{~/lib/select2/js/i18n/zh-CN.js}" src="/static/lib/select2/js/i18n/zh-CN.js"></script>
 </html>
 
 

@@ -8,6 +8,7 @@ import com.wgb.utils.entity.oracle.vo.BookRecordVO;
 import com.wgb.utils.entity.result.Result;
 import com.wgb.utils.service.download.DownloadService;
 import com.wgb.utils.service.query.page.PageService;
+import com.wgb.utils.util.constants.controller.ControllerConstant;
 import com.wgb.utils.util.excel.alibaba.ExcelUtils;
 import com.wgb.utils.util.excel.download.BaseInf;
 // import com.wgb.utils.util.excel.download.ExcelUtil;
@@ -62,10 +63,22 @@ public class DownloadBookRecordController {
 			List<BaseInf> baseInfs = downloadService.fillFieldAndTitle();
 			// 初始化参数条件
 
-			log.info("下载-查询参数：[id]-[{}],[name]-[{}],[remarks]-[{}]", bookRecordDTO.getId(), bookRecordDTO.getName(), bookRecordDTO.getRemarks());
+			// log.info("下载-查询参数：[id]-[{}],[name]-[{}],[remarks]-[{}]", bookRecordDTO.getId(), bookRecordDTO.getName(), bookRecordDTO.getRemarks());
+			log.info("查询参数信息：[编号：{}；名称：{}；备注：{}；日期范围：({}-{}){}-{}]", bookRecordDTO.getId(), bookRecordDTO.getName(), bookRecordDTO.getRemarks(), bookRecordDTO.getStartCreateDate(), bookRecordDTO.getEndCreateDate(), bookRecordDTO.getStartCreateTime(),bookRecordDTO.getStartTime());
 			// 根据查询条件查询优秀书籍信息
 			DynamicDataSourceSwitch.setRouteKey("slave1");
-			List<BookRecord> listInfo = downloadService.getBookRecordInfo(bookRecordDTO);
+			List<BookRecord> listInfo = null;
+
+			if ("master".equals(DynamicDataSourceSwitch.getRouteKey())) {
+				// 如果是从主库中下载，则使用不完整下载（只下载重要部分）
+				log.info("[下载操作]主库查询数据,而且查询信息的约束条件不包含时间");
+				listInfo = downloadService.getBookRecordInfo(bookRecordDTO);
+			} else {
+				// 如果是从从库中下载，则使用完整下载（下载所有数据）
+				log.info("[下载操作]从库查询数据");
+				Result<List<BookRecord>> result = (Result<List<BookRecord>>)pageService.queryBookRecordByDTO(bookRecordDTO, ControllerConstant.SIGN_DOWNLOAD);
+				listInfo = result.getData();
+			}
 			if (response != null && listInfo != null) {
 				org.apache.poi.ss.usermodel.Workbook workbook= ExcelUtil.createWorkbook(2007, sheetName, baseInfs, listInfo);
 				ExcelUtil.workbook2InputStream(response, workbook, fileName, fileSuffix);

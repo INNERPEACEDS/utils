@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 /**
  * json转换工具
  *
- * @author Alance 2018年08月30日14:18:22
  */
 @Slf4j
 public class JsonUtil {

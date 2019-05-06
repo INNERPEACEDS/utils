@@ -15,12 +15,11 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 public class CacheManage {
 
 	/**
-	 * 代付安全验证码缓存 存在时间 5分钟
-	 * cache Key Constant.DF_SECURITY_EMAILCODE+email 当前登录用户的email 即发送邮件的目标邮箱
-	 * @author yanlong
+	 * 安全验证码缓存 存在时间 5分钟
+	 * cache Key CSECURITY_EMAILCODE+email 当前登录用户的email 即发送邮件的目标邮箱
 	 * @date 2017-6-23
 	 */
-	public static Cache<String,SmsCodeModel> dfSecurityEmailCodeCache = new Cache<String,SmsCodeModel>(5);
+	public static Cache<String,SmsCodeModel> securityEmailCodeCache = new Cache<String,SmsCodeModel>(5);
 
 	/**
 	 * 只读库标识缓存【用于当只读库奔溃时，切换至生产库】 存在时间 1分钟

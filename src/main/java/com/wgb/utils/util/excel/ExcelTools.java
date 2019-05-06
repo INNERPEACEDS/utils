@@ -186,10 +186,7 @@ public class ExcelTools {
 	}
 
 	/**
-	 *
 	 * 删除字符串内的回车 空格和两端空白
-	 * @author yanlong 2017-7-5
-	 *
 	 */
 	public static String tse(String str){
 		return str == null? "":str.replace(" ", "").replace("/r", "").replace("/n", "").trim();

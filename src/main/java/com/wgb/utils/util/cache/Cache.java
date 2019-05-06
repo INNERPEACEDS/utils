@@ -32,8 +32,7 @@ public class Cache<K, V> {
 	 */
 	private void Initialize(long timeOut) {
 		if (timeOut > 0) {
-			graphs = CacheBuilder.newBuilder()
-					.expireAfterWrite(timeOut, TimeUnit.MINUTES) //
+			graphs = CacheBuilder.newBuilder().expireAfterWrite(timeOut, TimeUnit.MINUTES)
 					.build(new CacheLoader<K, V>() {
 						public V load(K key) {
 							// 取消默认的自动缓存添加器
@@ -56,7 +55,6 @@ public class Cache<K, V> {
 	 * @param key
 	 * @return
 	 */
-	@SuppressWarnings("finally")
 	public V get(K key) {
 		V v = null;
 		try {

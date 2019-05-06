@@ -27,6 +27,7 @@ import java.util.Arrays;
 public class EmailUtil {
 	/**
 	 * 发送者
+	 *
 	 */
 	@Value("${spring.mail.username}")
 	private String deliver;
@@ -46,7 +47,7 @@ public class EmailUtil {
 	/**
 	 * html模板
 	 */
-	public static String temp = "<html><head><style>body{margin:0;padding:0;font-size:14px}.mail{width:680px;padding:10px 30px;background:#fff;border:10px solid #eee}.mail_title{width: 229px;height: 63px;background:url(http://impl.com/images/ielpm_ico.png) no-repeat 0 0;border-bottom:1px dashed #adacac;height:70px}.mail p{margin:20px 30px;line-height:26px}.mail p .a1{color:#1e5494;text-decoration:underline}.mail_fot{border-top:1px dashed #adacac;padding:10px 0 10px 0}.mail_fot p{color:#999;font-size:12px;line-height:18px}</style></head><body><div class=\\\"mail\\\"><div class=\\\"mail_title\\\"></div>\" 此处为测试正文：+ PLACEHOLDER + \"<div class=\\\"mail_fot\\\"><p>本邮件由系统自动发出，请勿直接回复！<br>如有疑问会建议，请联系易联客服，24小时客服电话：010-53500763/764。<br>网址：http://www.impl.com/</p></div></div></body></html>";
+	public static String temp = "<html><head><style>body{margin:0;padding:0;font-size:14px}.mail{width:680px;padding:10px 30px;background:#fff;border:10px solid #eee}.mail_title{width: 229px;height: 63px;background:url(http://impl.com/images/innerpeace_ico.png) no-repeat 0 0;border-bottom:1px dashed #adacac;height:70px}.mail p{margin:20px 30px;line-height:26px}.mail p .a1{color:#1e5494;text-decoration:underline}.mail_fot{border-top:1px dashed #adacac;padding:10px 0 10px 0}.mail_fot p{color:#999;font-size:12px;line-height:18px}</style></head><body><div class=\\\"mail\\\"><div class=\\\"mail_title\\\"></div>\" 此处为测试正文：+ PLACEHOLDER + \"<div class=\\\"mail_fot\\\"><p>本邮件由系统自动发出，请勿直接回复！<br>如有疑问会建议，请联系易联客服，24小时客服电话：010-45367376/458。<br>网址：http://www.inner_peace.com/</p></div></div></body></html>";
 	/**
 	 * 发送简单邮件
 	 * @param easyMail 简单邮件对象

@@ -65,3 +65,6 @@ function getImage() {
     var serial = $("#serial").val();
     window.open("getImage?id=" + serial, "_self");
 }
+function uploadDataInfo() {
+    window.open("imageIndex");
+}

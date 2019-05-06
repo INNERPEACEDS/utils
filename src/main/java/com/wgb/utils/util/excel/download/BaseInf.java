@@ -8,8 +8,6 @@ import java.util.Map;
 
 /**
  * 列开头信息和结尾信息
- *
- * @author yanlong 2018年03月06日09:36:18
  */
 @Data
 @Builder

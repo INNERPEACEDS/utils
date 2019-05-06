@@ -3,6 +3,8 @@ package com.wgb.utils.dao.oracle;
 import com.wgb.utils.entity.oracle.Image;
 import com.wgb.utils.entity.oracle.ImageExample;
 import java.util.List;
+
+import com.wgb.utils.entity.oracle.dto.ImageDTO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -95,4 +97,11 @@ public interface ImageMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Image record);
+
+    /**
+     * 查询上传数据信息
+     * @param imageDTO
+     * @return
+     */
+    List<Image> listImageByDTO(@Param("imageDTO") ImageDTO imageDTO);
 }

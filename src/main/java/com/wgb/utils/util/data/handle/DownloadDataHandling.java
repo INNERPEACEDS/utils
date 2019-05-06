@@ -31,7 +31,7 @@ public class DownloadDataHandling {
 			return index;
 		}
 		int indexStrLength = indexStr.length();
-		log.info("序号[{}]的长度为：{}", indexStr, indexStrLength);
+		// log.info("序号[{}]的长度为：{}", indexStr, indexStrLength);
 		for (int i = 0; i < (indexLength - indexStrLength); i++) {
 			indexStr = indexPrefix + indexStr;
 		}

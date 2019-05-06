@@ -11,4 +11,6 @@ public interface ImageService {
 	Result<String> saveImageInfo(ImageDTO imageDTO);
 
 	Result<String> getImageAddress(ImageDTO imageDTO);
+
+	Result<?> listImageByDTO(ImageDTO imageDTO, String type);
 }
