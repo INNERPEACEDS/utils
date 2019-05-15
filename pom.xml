@@ -166,12 +166,31 @@
         </dependency>
         <!--使用阿里的easyexcel进行下载 start-->
 
+        <!-- Redis缓存 start-->
+        <!-- 使用方法一：StringRedisTemplate的使用 start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- 使用方法一：StringRedisTemplate的使用 end-->
+        <!-- Redis缓存 end-->
         <!--暂时无使用-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.10</version>
         </dependency>
+
     </dependencies>
 
     <build>
