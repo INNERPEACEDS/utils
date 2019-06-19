@@ -31,4 +31,11 @@ public class AuthController {
         return "index";
     }
 
+    /**
+     * 404页面
+     */
+    @RequestMapping("/notFound.html")
+    public String notFound() {
+        return "notFound";
+    }
 }

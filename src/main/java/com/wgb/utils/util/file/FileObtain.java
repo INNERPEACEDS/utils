@@ -99,6 +99,11 @@ public class FileObtain {
      */
     private static final String SOURCE_FILE_DIRECTORY2 = "D:/Java/eclipse4.6.0master/workspace/yspay/target/ROOT";
 
+	/**
+     * 信汇商户系统地址
+     */
+	private static final String SOURCE_FILE_DIRECTORY3 = "D:/Java/eclipse4.6.0/workspace/xhepay/yspay/target/ROOT";
+
     /**
      * 设置动态数据
      * @param path 打包项目所在地址
@@ -522,7 +527,7 @@ public class FileObtain {
     public static void execute(int type, String path, String parseLineWay) {
         setDynamicData(path);
         // 如果不是直接使用项目打包后的目录，采用自动部署获取方式
-        if (type != 4 && type != 5 && type != 6) {
+        if (type != 4 && type != 5 && type != 6 && type != 7) {
             List<String> list = FileUtil.readFileDirectory(DEPLOY_SOURCE_FILE_DIRECTORY);
             String[] directories = list.toArray(new String[list.size()]);
             //
@@ -558,6 +563,10 @@ public class FileObtain {
                 log.info("===采用提供打包文件目录方式操作（易势商户系统）===");
                 incrementDeployProject(SOURCE_FILE_DIRECTORY2, deployIncrementFileDirectory, parseLineWay);
                 break;
+	        case 7:
+		        log.info("===采用提供打包文件目录方式操作（信汇商户系统）===");
+		        incrementDeployProject(SOURCE_FILE_DIRECTORY3, deployIncrementFileDirectory, parseLineWay);
+		        break;
             default:
         }
     }
@@ -566,7 +575,7 @@ public class FileObtain {
         // String[] fileNameDirectories = {"src/main/webapp/M3gr/MobilePayMag/Regesitor.jsp", "src/main/java/com/buybal/epay/dao/MobilePayApplyDao.java", "src/main/java/com/buybal/epay/dao/MobilePayDAO.java"};
         // String[] realFileNameDirectories = fileNamesAnalysis(fileNameDirectories);
         // 执行任务
-        type = 6;
+        type = 5;
         String path = SOURCE_FILE_DIRECTORY;
         if (type == 4) {
             path = SOURCE_FILE_DIRECTORY;
@@ -577,6 +586,9 @@ public class FileObtain {
         if (type == 6) {
             path = SOURCE_FILE_DIRECTORY2;
         }
+	    if (type == 7) {
+		    path = SOURCE_FILE_DIRECTORY3;
+	    }
 
         // 解析行方式：jsonData=解析json数据获取文件路径，例如：{"text":"src/main/webapp/WEB-INF/struts-config.xml","gfm":"`src/main/webapp/WEB-INF/struts-config.xml`"}；address=直接人工手动添加地址，例如：src/main/java/com/buybal/epay/dao/TRegionInfoDAO.java
         String[] parseLineWays = {"jsonData", "address"};

@@ -79,4 +79,11 @@ public class TestOther {
         }
     }
 
+    @Test
+    public void stringTest() {
+        String id = "";
+
+        log.info("长度：{}", id.substring(0,1)+"****************"+id.substring(id.length()-1, id.length()));
+
+    }
 }
