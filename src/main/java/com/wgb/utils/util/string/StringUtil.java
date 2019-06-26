@@ -83,7 +83,12 @@ public class StringUtil {
     }
 
 
-
+    /**
+     * String转Map
+     * 格式：[1=123|2=345|3=89|4=]
+     * @param str
+     * @return
+     */
     public static Map<String, String> stringToMap(String str) {
         Map<String, String> map = new HashMap<>();
         log.info("要转的str：{}", str);
@@ -117,6 +122,7 @@ public class StringUtil {
         return map;
     }
 
+
     public static Map equalSplit(String[] str1) {
         Map<String, String> map = new HashMap<>();
         for (int i = 0; i < str1.length; i++) {
@@ -131,6 +137,43 @@ public class StringUtil {
             }
             if (str2.length == 2) {
                 map.put(str2[0], str2[1]);
+            }
+        }
+        return map;
+    }
+
+    /**
+     * String转Map
+     * 格式：{deviceID=1&deviceType=4&sourceIP=192.168.1.1&accountIdHash=12236&mobile=12345678901}
+     * @param str
+     * @return
+     */
+    public static Map<String, String> getStringToMap(String str) {
+        // 判断str是否有值
+        if (null == str || "".equals(str)) {
+            return null;
+        }
+        str = str.substring(1, str.length()-1);
+        // 根据&截取
+        String[] strings = str.split("&");
+        // 设置HashMap长度
+        int mapLength = strings.length;
+        // 判断hashMap的长度是否是2的幂。
+        if ((strings.length % 2) != 0) {
+            mapLength = mapLength + 1;
+        }
+        Map<String, String> map = new HashMap<String, String>(mapLength);
+        // 循环加入map集合
+        for (int i = 0; i < strings.length; i++) {
+            // 截取一组字符串
+            String[] strArray = strings[i].split("=");
+            if (strArray.length == 2) {
+                // strArray[0]为KEY strArray[1]为值
+                map.put(strArray[0], strArray[1]);
+            }
+            if (strArray.length == 1) {
+                // strArray[0]为KEY strArray[1]为值
+                map.put(strArray[0], "");
             }
         }
         return map;
@@ -156,11 +199,16 @@ public class StringUtil {
         /*String a = "";
         Map map = stringToMap(a);
         log.info("map:{}", map);*/
-        String rate = "6";
+       /* String rate = "6";
         String rateStr = getThousandthRate(rate);
-        log.info("费率信息：{}", rateStr);
-
-
+        log.info("费率信息：{}", rateStr);*/
+        /*String str = "{123}";
+        String substring = str.substring(1,str.length()-1);
+        log.info("sub:{}", substring);*/
+        String str = "";
+        String[] strs = str.split("&");
+        log.info("strs:{}", strs);
+        log.info("length:{}", strs.length);
     }
 
     /**
