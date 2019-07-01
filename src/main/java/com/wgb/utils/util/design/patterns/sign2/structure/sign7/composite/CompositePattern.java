@@ -3,7 +3,7 @@ package com.wgb.utils.util.design.patterns.sign2.structure.sign7.composite;
 import java.util.ArrayList;
 
 /**
- * 组合模式
+ * 组合模式：透明组合模式
  * @author INNERPEACE
  * @date 2019/6/26 19:02
  **/
