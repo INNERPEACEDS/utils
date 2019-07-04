@@ -33,6 +33,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--tomcat部署去除该jar包，避免和部署服务器的jar冲突-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+            <!--<scope>compile</scope>-->
+        </dependency>
         <!--自动热部署开始-->
         <dependency>
             <groupId>org.springframework</groupId>

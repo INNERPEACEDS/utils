@@ -7,24 +7,25 @@ import java.math.BigInteger;
 
 /**
  * 有序排列计算的值（A（n, m））
+ * A（n, m）= n*(n-1)*(n-2)……（n-m+1) = n!/(n-m)!
  * @author INNERPEACE
  * @date 2019/1/13 12:18
  **/
 public class A {
-    private BigDecimal m;
     private BigDecimal n;
+    private BigDecimal m;
 
-    A(int m, int n) {
-        this.m = new BigDecimal(m);
+    public A(int n, int m) {
         this.n = new BigDecimal(n);
+        this.m = new BigDecimal(m);
     }
 
-    A(String m, String n) {
-        this.m = new BigDecimal(m);
+    public A(String n, String m) {
         this.n = new BigDecimal(n);
+        this.m = new BigDecimal(m);
     }
 
-    A(BigDecimal m, BigDecimal n) {
+    A(BigDecimal n, BigDecimal m) {
         this.m = m;
         this.n = n;
     }

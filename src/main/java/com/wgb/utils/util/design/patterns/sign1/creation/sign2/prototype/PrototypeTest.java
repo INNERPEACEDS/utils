@@ -1,7 +1,7 @@
 package com.wgb.utils.util.design.patterns.sign1.creation.sign2.prototype;
 
 /**
- * 原型模式的测试类
+ * 原型模式的测试类(浅克隆和深克隆)
  *
  * @author INNERPEACE
  * @date 2019/6/19 10:56

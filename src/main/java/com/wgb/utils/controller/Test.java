@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Test {
 	public static void main(String[] args) {
-		String[] str = {"str1", "str2", "str3"};
+		/*String[] str = {"str1", "str2", "str3"};
 		for (String s : str) {
 			log.info("字符串：{}", s);
 			for (int i = 0; i < 10; i++) {
@@ -18,6 +18,7 @@ public class Test {
 					break;
 				}
 			}
-		}
+		}*/
 	}
+
 }

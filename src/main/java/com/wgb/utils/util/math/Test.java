@@ -1,6 +1,8 @@
 package com.wgb.utils.util.math;
 
+import com.wgb.utils.util.math.combination.A;
 import com.wgb.utils.util.math.combination.C;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -8,9 +10,11 @@ import java.util.Random;
 import static java.math.BigDecimal.ROUND_HALF_DOWN;
 
 /**
+ * 排列组合测试
  * @author INNERPEACE
  * @date 2019/1/13 12:15
  **/
+@Slf4j
 public class Test {
 
     public static double probability(int sum, int select1, int select2) {
@@ -29,6 +33,18 @@ public class Test {
 
 
     public static void main(String[] args) {
+        // test1();
+        test2();
+
+    }
+
+    public static void test2() {
+        A a = new A(10, 10);
+        log.info("10的阶乘是：{}", a.getValue());
+
+    }
+
+    public static void test1() {
         for (int i = 0; i < 100000; i++) {
             Random random = new Random();
             //　范围在[100,200)之间
@@ -64,6 +80,5 @@ public class Test {
         // System.out.println("===" + new C(m, select1).getValueByFormula());
         System.out.println("1:" + probability(m, select1, select2));
         System.out.println("2:" + probability2(m, select1, select2));*/
-
     }
 }

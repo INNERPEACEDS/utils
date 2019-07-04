@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 
 /**
  * 无序排列组合（C(n, m)）
+ * C(n, m) = n!/m!(n-m)!
  * @author INNERPEACE
  * @date 2019/1/13 12:36
  **/
