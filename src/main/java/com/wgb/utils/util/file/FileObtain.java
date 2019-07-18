@@ -575,7 +575,7 @@ public class FileObtain {
         // String[] fileNameDirectories = {"src/main/webapp/M3gr/MobilePayMag/Regesitor.jsp", "src/main/java/com/buybal/epay/dao/MobilePayApplyDao.java", "src/main/java/com/buybal/epay/dao/MobilePayDAO.java"};
         // String[] realFileNameDirectories = fileNamesAnalysis(fileNameDirectories);
         // 执行任务
-        type = 5;
+        type = 6;
         String path = SOURCE_FILE_DIRECTORY;
         if (type == 4) {
             path = SOURCE_FILE_DIRECTORY;
@@ -590,7 +590,7 @@ public class FileObtain {
 		    path = SOURCE_FILE_DIRECTORY3;
 	    }
 
-        // 解析行方式：jsonData=解析json数据获取文件路径，例如：{"text":"src/main/webapp/WEB-INF/struts-config.xml","gfm":"`src/main/webapp/WEB-INF/struts-config.xml`"}；address=直接人工手动添加地址，例如：src/main/java/com/buybal/epay/dao/TRegionInfoDAO.java
+        // 解析行方式：【0：jsonData=解析json数据获取文件路径，例如：{"text":"src/main/webapp/WEB-INF/struts-config.xml","gfm":"`src/main/webapp/WEB-INF/struts-config.xml`"}；1：address=直接人工手动添加地址，例如：src/main/java/com/buybal/epay/dao/TRegionInfoDAO.java】
         String[] parseLineWays = {"jsonData", "address"};
         String parseLineWay = parseLineWays[1];
         execute(type, path, parseLineWay);

@@ -5,6 +5,9 @@ import com.wgb.utils.util.string.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.util.*;
 
 /**
@@ -151,12 +154,52 @@ public class FileUtil {
     }
 
 
+    /**
+     * 复制文件（1.7自动关闭流方式）
+     * @param file     源文件
+     * @param copyFile copy文件
+     */
+    public static void copyFile(File file, File copyFile) {
+        try (
+                FileInputStream fis = new FileInputStream(file);
+                FileOutputStream fos = new FileOutputStream(copyFile);
+                // 得到对应的文件通道
+                FileChannel in = fis.getChannel();
+                // 得到对应的文件通道
+                FileChannel out = fos.getChannel()
+        ){
+            // 获取当前系统时间
+            long start = System.currentTimeMillis();
+            // 连接两个通道，从in通道开始读取，然后向out通道写入
+            in.transferTo(0, in.size(), out);
+            long end = System.currentTimeMillis();
+            log.info("复制文件[{}]成功，运行时间：{}毫秒", file.getPath(), end-start);
+        } catch (Exception e) {
+            log.error("[复制文件-copyFile]-读写异常", e);
+        }
+    }
+
     public static void main(String[] args) {
-        // String fileName = "你好.txt";
-        // boolean neeaFileType = isNeedFileType(fileName);
-        // String fileSuffix = getFileSuffix(fileName);
-        // String filePrefix = getFilePrefix(fileName);
-        // log.info("结果：[文件名称]-[{}],[文件格式类型]-[{}]", filePrefix, fileSuffix);
+        // getSuffixAndPrefixTest();
+        // obtainFilesAndDirectoriesTest();
+        copyFileTest();
+    }
+
+    /**
+     * 获取文件名称（文件前缀）和文件类型（文件后缀）测试
+     */
+    public static void getSuffixAndPrefixTest() {
+         String fileName = "你好.txt";
+         boolean neeaFileType = isNeedFileType(fileName);
+         String fileSuffix = getFileSuffix(fileName);
+         String filePrefix = getFilePrefix(fileName);
+         log.info("结果：[文件名称]-[{}],[文件格式类型]-[{}]", filePrefix, fileSuffix);
+    }
+
+    /**
+     * 获取所有文件和目录测试
+     */
+    public static void obtainFilesAndDirectoriesTest() {
         Map<String, List<String>> map = obtainAllFilesAndDirectories("E:/deploy");
         List<String> files = map.get("files");
         List<String> directories = map.get("directories");
@@ -166,6 +209,18 @@ public class FileUtil {
         for (String directoryPath : directories) {
             log.info("文件夹路径：{}", directoryPath);
         }
+    }
+
+    /**
+     * copy文件测试
+     */
+    public static void copyFileTest() {
+        String filePath = "E:\\";
+        String copyPath = "F:\\data.txt\\";
+        String fileName = "dataMining.txt";
+        File file = new File(filePath + fileName);
+        File copyFile = new File(copyPath);
+        copyFile(file, copyFile);
     }
 
 }
