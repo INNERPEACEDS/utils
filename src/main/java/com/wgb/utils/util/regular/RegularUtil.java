@@ -42,6 +42,12 @@ public class RegularUtil {
      */
     public static final String REGEX_ZIP_UPLOAD_FILE_SUFFIXES="^.*(rar|RAR|zip|ZIP)$";
 
+
+    /**
+     * 密码1（数字和字母组合，必须两者都包含）
+     */
+    public static final String PASSWORD1 = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$";
+
     /**
      * 判断是否是数字
      * @param value 带判断字符串

@@ -6,7 +6,9 @@ package com.wgb.utils.util.http;
  **/
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
@@ -83,6 +85,24 @@ class HttpsHandler extends HttpFacade {
     @Override
     public String getStatus(String url) throws Exception {
         return this.handlerStatus(url, null, this.DEFAULT_CONNECT_TIMEOUT, this.DEFAULT_READ_TIMEOUT, METHOD_GET);
+    }
+
+    /**
+     * 获取连接
+     * @param url
+     * @param method
+     * @return
+     * @throws IOException
+     */
+    HttpsURLConnection getConnection(URL url, String method) throws IOException {
+        HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
+        conn.setRequestMethod(method);
+        conn.setDoInput(true);
+        if (METHOD_POST.equals(method)) {
+            conn.setDoOutput(true);
+        }
+        conn.setRequestProperty("Accept", "*/*");
+        return conn;
     }
 
     /**

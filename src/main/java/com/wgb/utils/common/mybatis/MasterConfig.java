@@ -1,10 +1,5 @@
 package com.wgb.utils.common.mybatis;
 
-/**
- * @author INNERPEACE
- * @date 2019/3/29 16:40
- **/
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -20,9 +15,14 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
+
+/**
+ * @author INNERPEACE
+ * @date 2019/3/29 16:40
+ **/
 @Slf4j
 @Configuration
-@EnableAutoConfiguration
+// @EnableAutoConfiguration
 // @MapperScan(basePackages = "com.wgb.utils.dao.oracle", sqlSessionTemplateRef = "masterSqlSessionTemplate")
 public class MasterConfig {
 	/**

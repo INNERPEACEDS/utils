@@ -26,7 +26,7 @@ import java.util.Map;
  **/
 @Slf4j
 @Configuration
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @ComponentScan({"com.wgb.utils"})
 @AutoConfigureAfter({MasterConfig.class, Slave1Config.class, Slave2Config.class, OracleConfig.class})
 @MapperScan(basePackages = "com.wgb.utils.dao.oracle", sqlSessionTemplateRef = "dynamicSqlSessionTemplate")

@@ -3,6 +3,8 @@ package com.wgb.utils.util;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +15,27 @@ import java.util.Map;
 @Slf4j
 public class Test {
     public static void main(String[] args) {
+        // stringTest();
+        dateTest();
+    }
+
+    public static void dateTest() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = sdf.parse("2019-07-23");
+            log.info("date:{}", date);
+        } catch (Exception e) {
+            log.error("异常");
+        }
+
+    }
+
+    public static void stringTest() {
+        String str = "1dee0";
+        log.info("长度：{},下标0的值：{}", str.length(), str.substring(0, 1));
+    }
+
+    public static void bufferTest() {
         /*Map<String, String> map = new HashMap<>();
         map.put("test", "test");
         if (map.get("test") != null) {
@@ -26,6 +49,7 @@ public class Test {
         } else {
             log.info("数据为空");
         }*/
+
         StringBuffer buffer = new StringBuffer();
         log.info("数据：{}", buffer);
         if ("".equals(buffer.toString())) {

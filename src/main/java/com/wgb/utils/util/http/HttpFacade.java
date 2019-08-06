@@ -2,7 +2,7 @@ package com.wgb.utils.util.http;
 
 import lombok.extern.slf4j.Slf4j;
 
-import javax.net.ssl.HttpsURLConnection;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -120,24 +120,6 @@ public abstract class HttpFacade {
             sb.deleteCharAt(sb.length() - 1);
         }
         return sb.toString();
-    }
-
-    /**
-     * 获取连接
-     * @param url
-     * @param method
-     * @return
-     * @throws IOException
-     */
-    HttpsURLConnection getConnection(URL url, String method) throws IOException {
-        HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
-        conn.setRequestMethod(method);
-        conn.setDoInput(true);
-        if (METHOD_POST.equals(method)) {
-            conn.setDoOutput(true);
-        }
-        conn.setRequestProperty("Accept", "*/*");
-        return conn;
     }
 
     /**

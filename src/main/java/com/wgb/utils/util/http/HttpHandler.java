@@ -1,7 +1,9 @@
 package com.wgb.utils.util.http;
 
 import javax.net.ssl.HttpsURLConnection;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
@@ -54,7 +56,7 @@ class HttpHandler extends HttpFacade {
     }
 
     private <T extends Object> T handleProcess(String url, byte[] content, int connectTimeout, int readTimeout, String method, String type) throws Exception{
-        HttpsURLConnection conn = null;
+        HttpURLConnection conn = null;
         OutputStream out = null;
         try {
             conn = this.getConnection(new URL(url), method);
@@ -69,5 +71,23 @@ class HttpHandler extends HttpFacade {
                 conn.disconnect();
             }
         }
+    }
+
+    /**
+     * 获取连接
+     * @param url
+     * @param method
+     * @return
+     * @throws IOException
+     */
+    HttpURLConnection getConnection(URL url, String method) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        conn.setRequestMethod(method);
+        conn.setDoInput(true);
+        if (METHOD_POST.equals(method)) {
+            conn.setDoOutput(true);
+        }
+        conn.setRequestProperty("Accept", "*/*");
+        return conn;
     }
 }

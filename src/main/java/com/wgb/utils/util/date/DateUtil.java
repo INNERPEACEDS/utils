@@ -135,5 +135,17 @@ public class DateUtil {
     public static String getTodayLastSecondTime(Date date) {
         return toStr(date, "yyyy-MM-dd 23:59:59");
     }
+
+    /**
+     * 时间戳转日期字符
+     * @param time 时间戳（秒）
+     * @return
+     */
+    public static String timestampToDateStr(long time) {
+        // java中以毫秒存储时间（13位），C、C++使用秒存储时间（10位）
+        time = time * 1000;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date(Long.parseLong(String.valueOf(time))));
+    }
 }
 

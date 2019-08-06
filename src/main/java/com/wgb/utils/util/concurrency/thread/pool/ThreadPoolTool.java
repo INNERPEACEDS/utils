@@ -2,6 +2,7 @@ package com.wgb.utils.util.concurrency.thread.pool;
 
 import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Method;
+import java.util.Calendar;
 
 
 /**
@@ -57,11 +58,10 @@ public class ThreadPoolTool<T,V> implements Runnable {
 	 * @param args 参数
 	 * @return
 	 */
-	public Class[] getClassTypes(Object... args) {
+	public static Class[] getClassTypes(Object... args) {
 		Class[] classTypes = new Class[args.length];
-		int i = 0;
-		for (Object arg : args) {
-			classTypes[i] = arg.getClass();
+		for (int i = 0; i < args.length; i++) {
+			classTypes[i] = args.getClass();
 		}
 		return classTypes;
 	}

@@ -171,7 +171,7 @@
             <artifactId>easyexcel</artifactId>
             <version>1.0.4</version>
         </dependency>
-        <!--使用阿里的easyexcel进行下载 start-->
+        <!--使用阿里的easyexcel进行下载 end-->
 
         <!-- Redis缓存 start-->
         <!-- 使用方法一：StringRedisTemplate的使用 start-->
@@ -191,13 +191,33 @@
         </dependency>
         <!-- 使用方法一：StringRedisTemplate的使用 end-->
         <!-- Redis缓存 end-->
-        <!--暂时无使用-->
+        <!-- 数据源提供数据库监控(暂时未使用) start -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.10</version>
         </dependency>
+        <!--数据源提供数据库监控 end -->
+        <!--Quartz定时器 start-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <!--Quartz定时器 end-->
 
+        <!--HttpClient请求 start-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <!--HttpClient请求 end-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>

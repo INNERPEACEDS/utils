@@ -104,6 +104,14 @@ public class FileObtain {
      */
 	private static final String SOURCE_FILE_DIRECTORY3 = "D:/Java/eclipse4.6.0/workspace/xhepay/yspay/target/ROOT";
 
+	private static final int TYPE_SYSTEM_YS_INNER = 4;
+
+	private static final int TYPE_SYSTEM_XH_INNER = 5;
+
+	private static final int TYPE_SYSTEM_YS_MERCHANT = 6;
+
+	private static final int TYPE_SYSTEM_XH_MERCHANT = 7;
+
     /**
      * 设置动态数据
      * @param path 打包项目所在地址
@@ -577,16 +585,16 @@ public class FileObtain {
         // 执行任务
         type = 6;
         String path = SOURCE_FILE_DIRECTORY;
-        if (type == 4) {
+        if (type == TYPE_SYSTEM_YS_INNER) {
             path = SOURCE_FILE_DIRECTORY;
         }
-        if (type == 5) {
+        if (type == TYPE_SYSTEM_XH_INNER) {
             path = SOURCE_FILE_DIRECTORY1;
         }
-        if (type == 6) {
+        if (type == TYPE_SYSTEM_YS_MERCHANT) {
             path = SOURCE_FILE_DIRECTORY2;
         }
-	    if (type == 7) {
+	    if (type == TYPE_SYSTEM_XH_MERCHANT) {
 		    path = SOURCE_FILE_DIRECTORY3;
 	    }
 

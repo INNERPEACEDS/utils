@@ -13,27 +13,46 @@ import com.google.common.cache.LoadingCache;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ *
+ * 缓存
+ * @author INNERPEACE
+ * @param <K>
+ * @param <V>
+ */
 public class Cache<K, V> {
 
-	// 声明缓存
+	/**
+	 * 声明缓存
+	 */
 	private LoadingCache<K, V> graphs;
 
 	/**
 	 *
 	 * @param timeOut
-	 *            分钟
+	 * 分钟
 	 */
 	public Cache(long timeOut) {
-		Initialize(timeOut);
+		initialize(TimeUnit.MINUTES, timeOut);
+	}
+
+	/**
+	 * 使用具体的时间类型和具体的时间来定时构造
+	 * @param timeUnit 时间类型（）
+	 * @param timeOut
+	 */
+	public Cache(TimeUnit timeUnit, Long timeOut) {
+		initialize(timeUnit, timeOut);
 	}
 
 	/**
 	 * 初始化缓存容器
 	 */
-	private void Initialize(long timeOut) {
+	private void initialize(TimeUnit timeUnit, long timeOut) {
 		if (timeOut > 0) {
-			graphs = CacheBuilder.newBuilder().expireAfterWrite(timeOut, TimeUnit.MINUTES)
+			graphs = CacheBuilder.newBuilder().expireAfterWrite(timeOut, timeUnit)
 					.build(new CacheLoader<K, V>() {
+						@Override
 						public V load(K key) {
 							// 取消默认的自动缓存添加器
 							return null;
@@ -41,6 +60,7 @@ public class Cache<K, V> {
 					});
 		} else {
 			graphs = CacheBuilder.newBuilder().build(new CacheLoader<K, V>() {
+				@Override
 				public V load(K key) {
 					// 取消默认的自动缓存添加器
 					return null;
