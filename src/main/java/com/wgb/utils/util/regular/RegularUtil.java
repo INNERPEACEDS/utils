@@ -48,6 +48,21 @@ public class RegularUtil {
      */
     public static final String PASSWORD1 = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$";
 
+	/**
+	 * 密码2（必须含有数字和字母组合，可以有特殊字符）
+	 */
+	public static final String PASSWORD2 = "^(?=.*\\d)(?=.*[a-zA-Z]).{8,20}$";
+
+	/**
+	 * 密码3（特殊字符、数字和字母组合，三者必须都包含，8位）
+	 * ?= 首先定空位，例如：abc123bbdf333#$& 字符串，(?=.*\d)定位 abc1 的空位（abc1前空位），(?=.*[a-zA-Z])定位 a 的空位（a之前的空位），
+	 * (?=.*[^A-Za-z0-9])定位 abc123bbdf333# 的空位（abc123bbdf333#之前的空位），符合定位空位再定空位，不符合则字符不满足规则，三者都符合
+	 * 以后从空位找到8位非回车非换行字符。
+	 */
+	public static final String PASSWORD3 = "^(?=.*\\d)(?=.*[a-zA-Z])(?=.*[^A-Za-z0-9]).{8}$";
+
+	// ab&c3
+
     /**
      * 判断是否是数字
      * @param value 带判断字符串
@@ -107,8 +122,18 @@ public class RegularUtil {
     }
 
     public static void main(String[] args) {
-        String regular = "^in*.*$";
-        String content = "inndesds";
-        regularMatcherTest(regular, content);
+        // regularTest();
+	    password1Test();
     }
+
+	public static void regularTest() {
+		String regular = "^in*.*$";
+		String content = "inndesds";
+		regularMatcherTest(regular, content);
+	}
+
+	public static void password1Test() {
+		String value = "123kaddddddd";
+		log.info("结果：{}", value.matches(PASSWORD2));
+	}
 }

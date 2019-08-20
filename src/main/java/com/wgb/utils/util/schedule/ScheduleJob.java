@@ -62,7 +62,7 @@ public class ScheduleJob {
 		log.info("http发送");
 		String url = "http://localhost:8088/lesheAlbumSpider/startSpider";
 		try {
-			// String respResult = restTemplate.post;
+			String respResult = restTemplate.postForObject(url, null, String.class);
 			// log.info("响应结果：{}", respResult);
 		} catch (Exception e) {
 			log.error("请求乐摄爬虫异常", e);

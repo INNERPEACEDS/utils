@@ -80,67 +80,9 @@ public class Tools {
 	}
 
 	/**
-	 * 获得用户级别中文描述
-	 *
-	 * @param object
-	 * @return zhangzhou
-	 */
-	public static String getMerClassForChinaese(Object object) {
-		if (object == null) {
-			return "";
-		}
-		if ("0".equals(object.toString().trim())) {
-			return "新注册用户";
-		}
-		if ("4".equals(object.toString().trim())) {
-			return "实名认证用户";
-		}
-		if ("7".equals(object.toString().trim())) {
-			return "VIP用户";
-		}
-		return "";
-	}
-
-	/**
-	 * 获得是否为合作商户中文描述
-	 *
-	 * @param object
-	 * @return zhangzhou
-	 */
-	public static String getIsCoopeRateForChinaese(Object object) {
-		if (object == null) {
-			return "";
-		}
-		if ("0".equals(object.toString().trim())) {
-			return "否";
-		}
-		if ("1".equals(object.toString().trim())) {
-			return "是";
-		}
-		return "";
-	}
-
-	/**
-	 * 获得是否为集团商户中文描述
-	 *
-	 * @param object
-	 * @return zhangzhou
-	 */
-	public static String getIsGroupForChinaese(Object object) {
-		if (object == null) {
-			return "";
-		}
-		if ("0".equals(object.toString().trim())) {
-			return "否";
-		}
-		if ("1".equals(object.toString().trim())) {
-			return "是";
-		}
-		return "";
-	}
-
-	/**
-	 * 制造随机数 马海 prm 随机数长度
+	 * 制造随机数
+	 * @param length 随机数长度
+	 * @return
 	 */
 	public static String getRandomNumber(int length) {
 		String randomNumber = "";
@@ -154,7 +96,6 @@ public class Tools {
 
 	/**
 	 * 制造随机字母和数字的组合
-	 *
 	 * @param length
 	 * @return
 	 */
@@ -177,10 +118,8 @@ public class Tools {
 	/**
 	 * 产生随机的字符串(随机产生在规定长度范围内的字符串)
 	 *
-	 * @param max
-	 *            最大的位数
-	 * @param min
-	 *            最小的位数 （8,6）最大8位最小2位
+	 * @param max 最大的位数
+	 * @param min 最小的位数 （8,6）最大8位最小2位
 	 * @return
 	 */
 	public static String getRandomString(int max, int min) {
@@ -233,7 +172,11 @@ public class Tools {
 		return generateRandStr + "";
 	}
 
-	// 随机生成字符串(自定义长度)
+	/**
+	 * 随机生成字符串
+	 * @param length 自定义长度
+	 * @return
+	 */
 	public static String getRandomString(int length) {
 		String radStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		StringBuffer generateRandStr = new StringBuffer();
@@ -245,7 +188,11 @@ public class Tools {
 		return generateRandStr + "";
 	}
 
-	// 随机生成纯数字字符串(自定义长度)
+	/**
+	 * 随机生成纯数字字符串
+	 * @param length 自定义长度
+	 * @return
+	 */
 	public static String getRandomNumberString(int length) {
 		String radStr = "0123456789";
 		StringBuffer generateRandStr = new StringBuffer();
@@ -259,7 +206,6 @@ public class Tools {
 
 	/**
 	 * 扩大100倍，并保留2位小数
-	 *
 	 * @param number
 	 * @return
 	 */
@@ -273,26 +219,26 @@ public class Tools {
 
 	/**
 	 * 把元为单位的数字转化为分为单位
-	 *
-	 * @param num
-	 *            待格式化的数值
+	 * @param num 待格式化的数值
 	 * @return 转换后的值
 	 */
 	public static long yuan2Fen(String num) {
 		long fen = 0L;
 		String fenStr = "";
 		int pos = num.indexOf(".");
-
 		if (pos == -1) {
 			fenStr = num + "00";
 		} else {
 			// 取小数点前的值
 			fenStr = num.substring(0, pos);
-			if (num.length() - pos >= 3) { // 小数点后面大于等于2位
+			if (num.length() - pos >= 3) {
+				// 小数点后面大于等于2位
 				fenStr += num.substring(pos + 1, pos + 3);
-			} else if (num.length() == pos) { // 小数点后面没有值
+			} else if (num.length() == pos) {
+				// 小数点后面没有值
 				fenStr += "00";
-			} else { // 小数点后面1位
+			} else {
+				// 小数点后面1位
 				fenStr += num.substring(pos + 1) + "0";
 			}
 		}
@@ -319,7 +265,6 @@ public class Tools {
 		if (price == null || price.trim().equals("")) {
 			return "";
 		}
-
 		DecimalFormat df1 = new DecimalFormat("0.00");
 		String str = "0.00";
 		try {
@@ -329,7 +274,6 @@ public class Tools {
 		} catch (Exception e) {
 			return price;
 		}
-
 		return str;
 	}
 
@@ -338,13 +282,11 @@ public class Tools {
 		if (price == null || price.trim().equals("")) {
 			return "";
 		}
-
 		// DecimalFormat df1 = new DecimalFormat("0.00");
 		String str = "0";
 		if (price != null) {
 			str = (Long.valueOf(price) / 100) + "";
 		}
-
 		return str;
 
 	}
@@ -361,7 +303,6 @@ public class Tools {
 
 	/**
 	 * 打印对象属性值
-	 *
 	 * @param ob
 	 * @return
 	 */
@@ -374,16 +315,12 @@ public class Tools {
 			String value = "";
 			try {
 				String name = field[i].getName();
-				value = cla
-						.getMethod(
-								"get" + name.substring(0, 1).toUpperCase()
-										+ name.substring(1), null)
-						.invoke(ob, null).toString();
+				value = cla.getMethod("get" + name.substring(0, 1).toUpperCase()
+						+ name.substring(1), null).invoke(ob, null).toString();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			strbuff.append(field[i].getName()).append(" [").append(value)
-					.append(" ] ");
+			strbuff.append(field[i].getName()).append(" [").append(value).append(" ] ");
 		}
 		return strbuff.toString();
 	}
@@ -391,7 +328,7 @@ public class Tools {
 	/**
 	 * 百分之多少格式化
 	 */
-	public static String Percent(Long top, Long foot) {
+	public static String percent(Long top, Long foot) {
 		if (foot == 0L) {
 			return "0.00%";
 		}
@@ -405,7 +342,7 @@ public class Tools {
 	/**
 	 * 千分之多少格式化
 	 */
-	public static String Thousandths(Long top, Long foot) {
+	public static String thousandths(Long top, Long foot) {
 		if (foot == 0L) {
 			return "0.00\u2030";
 		}
@@ -432,40 +369,7 @@ public class Tools {
 	}
 
 	/**
-	 * 获得预付卡状态
-	 */
-	public static String getYuFuKaTransState(Object value) {
-		if (value == null) {
-			return "-";
-		}
-		String str = "-";
-		try {
-			switch (Integer.parseInt(value.toString())) {
-				case 0:
-					str = "正常";
-					break;
-				case 1:
-					str = "已冲正";
-					break;
-				case 2:
-					str = "已撤销";
-					break;
-				case 3:
-					str = "已冲账";
-					break;
-				default:
-					break;
-			}
-		} catch (Exception e) {
-			log.error("预付卡状态获得出现异常", e);
-		}
-
-		return str;
-	}
-
-	/**
 	 * 邮箱验证
-	 *
 	 * @param email
 	 * @return
 	 */
@@ -474,7 +378,6 @@ public class Tools {
 		Pattern p = Pattern.compile(regExp);
 		Matcher m = p.matcher(email);
 		return m.find();
-
 	}
 
 	/**
@@ -499,7 +402,6 @@ public class Tools {
 
 	/**
 	 * 除法
-	 *
 	 * @param a
 	 * @param b
 	 * @return
@@ -511,7 +413,6 @@ public class Tools {
 
 	/**
 	 * 乘法
-	 *
 	 * @param a
 	 * @param b
 	 * @return
@@ -523,7 +424,6 @@ public class Tools {
 
 	/**
 	 * 把小数格式化为百分之多少
-	 *
 	 * @param a
 	 * @return
 	 */
@@ -536,11 +436,8 @@ public class Tools {
 
 	/**
 	 * 把小数格式化为百分之多少 （注意重载类型）
-	 *
-	 * @param number
-	 *            要格式化的数字
-	 * @param length
-	 *            保留几位小数 小于等于0的按照零算
+	 * @param number 要格式化的数字
+	 * @param length 保留几位小数 小于等于0的按照零算
 	 * @return
 	 */
 	public static String Percent(Double number, int length) {
@@ -559,7 +456,6 @@ public class Tools {
 
 	/**
 	 * 将oracle日期转换为字符串数据
-	 *
 	 * @return 日期字符串
 	 */
 	public static String getDateBySqlTimestamp(Object obj, String formatStr) {
@@ -579,7 +475,12 @@ public class Tools {
 		return "-";
 	}
 
-	// 获取2个日期之间的年份列表
+	/**
+	 * 获取2个日期之间的年份列表
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
 	public static List<String> getYearList(Date startDate, Date endDate) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(startDate);
@@ -697,63 +598,5 @@ public class Tools {
 	public static String getStrEmpty(String oriStr) {
 		return oriStr == null ? "" : oriStr.toString();
 	}
-
-	/**
-	 * 返回交易类型字符串
-	 * @param type
-	 * @return
-	 */
-	public static String getTransTyeStr(String type) {
-		String typeStr = "未知";
-		switch (type) {
-			case "11":
-				typeStr = "微信支付";
-				break;
-			case "12":
-				typeStr = "支付宝支付";
-				break;
-			case "13":
-				typeStr = "QQ钱包";
-				break;
-			case "14":
-				typeStr = "微信wap";
-				break;
-			case "15":
-				typeStr = "支付宝wap";
-				break;
-			case "16":
-				typeStr = "微信app";
-				break;
-			case "17":
-				typeStr = "支付宝app";
-				break;
-			case "18":
-				typeStr = "银联扫码";
-				break;
-			case "19":
-				typeStr = "银联条码";
-				break;
-			case "20":
-				typeStr = "百度钱包扫码";
-				break;
-			case "21":
-				typeStr = "百度钱包条码";
-				break;
-			case "22":
-				typeStr = "银联固定码";
-				break;
-			case "23":
-				typeStr = "京东钱包";
-				break;
-			case "24":
-				typeStr = "京东WAP";
-				break;
-
-			default:
-				break;
-		}
-		return typeStr;
-	}
-
 }
 

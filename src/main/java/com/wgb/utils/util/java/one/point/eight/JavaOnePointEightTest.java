@@ -1,5 +1,7 @@
 package com.wgb.utils.util.java.one.point.eight;
 
+import com.wgb.utils.util.java.one.point.eight.permission.PermissionClass;
+
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -19,8 +21,15 @@ public class JavaOnePointEightTest {
 		User apply = function.apply("构造器");
 
 		User user1 = new User();
+
+
 		Consumer<String> consumer1 = user1::disName;
 		consumer1.accept("实例方法调用");
+	}
+
+	public static void JavaDefaultMethodPermissionTest() {
+		PermissionClass permissionClass = new PermissionClass();
+		// permissionClass.test(); 不在同一包中，无法访问
 	}
 
 }
