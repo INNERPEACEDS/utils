@@ -40,17 +40,6 @@ public class AlgorithmTest {
 		System.out.println("排序后数据：");
 		PrintUtil.print(randomData);
 	}
-
-	public static void mergeSortTest() {
-		int[] randomData = RandomUtil.getRandomData(10, 142, 243);
-		System.out.println("排序前数据：");
-		PrintUtil.print(randomData);
-		MergeSort.mergeSort(randomData);
-		System.out.println("排序后数据：");
-		PrintUtil.print(randomData);
-
-	}
-
 	public static void NQueenTest() {
 		NQueen nQueen = new NQueen(20);
 		nQueen.solve();

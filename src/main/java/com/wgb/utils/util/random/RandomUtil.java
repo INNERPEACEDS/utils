@@ -9,6 +9,10 @@ import java.util.Random;
 public class RandomUtil {
 	private static final Random RANDOM = new Random();
 
+	public static Random getRandomInstance() {
+		return RANDOM;
+	}
+
 	/**
 	 * 生成length个随机数，取值范围是[min, max]
 	 * @param length 随机数个数

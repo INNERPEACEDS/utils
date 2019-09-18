@@ -1,7 +1,15 @@
 function loginInfo() {
-    if (!confirm("确定要提交您的信息吗？")) {
-        return false;
+    var message = $("#message").val();
+    if (message === "不能为null") {
+        if (!confirm("要填写登录信息吗？")) {
+            return false;
+        }
+    } else {
+        if (!confirm("要更新登录信息吗？")) {
+            return false;
+        }
     }
+
     var boxHtml = '';
     boxHtml += '<div class="confirmBg"></div><div class="confirmBox">';
     boxHtml += '<form  name="subForm" action="loginInfo" method="post" style="margin-left: 85px;margin-top:28px;" >';
@@ -31,3 +39,6 @@ function closeBox() {
     $(".confirmBg").remove();
     $(".confirmBox").remove();
 }
+
+
+

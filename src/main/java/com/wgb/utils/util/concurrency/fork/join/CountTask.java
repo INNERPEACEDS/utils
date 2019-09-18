@@ -54,8 +54,7 @@ public class CountTask extends RecursiveTask<Integer> {
 		Future<Integer> result = forkJoinPool.submit(task);
 		try {
 			System.out.println(result.get());
-		} catch (InterruptedException e) {
-		} catch (ExecutionException e) {
+		} catch (InterruptedException | ExecutionException e) {
 		}
 	}
 }

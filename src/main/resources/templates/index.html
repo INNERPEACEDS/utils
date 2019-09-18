@@ -8,24 +8,210 @@
     <link th:replace="common/indexLink :: link"/>
     <link rel="stylesheet" th:href="@{~/lib/select2/css/select2.min.css}" href="/static/lib/select2/css/select2.min.css"/>
 </head>
-<body>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">My family</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    Thinking
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有功能</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:loginInfo();">登录信息提交 </a></dd>
+                        <dd><a href="javascript:window.location.href='downloadAndUpload/page';">下载上传</a></dd>
+                        <dd><a href="javascript:;">列表三</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;" id="layerDemo">
+            内容主体区域
+            <button class="layui-btn"  data-method="notice" id="pop">弹出内容</button>
+            <input id="message"  th:value="${message != null ? message : null}" />
+
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © Thinking.com
+    </div>
+</div>
+
+</body>
+
+<!--<body>
     <div class="layui-body">
         <input type="text" id="message" disabled="disabled" th:value="${message != null ? message : null}" />
             <div>
                 <button onclick="javascript:window.location.href='downloadAndUpload/page'" value="下载上传">下载上传</button>
-                <!--<input type="button" onclick="javascript:window.location.href='downloadAndUpload/page'" value="下载上传" />-->
-                <!--<input type="button" type="hidden" id="loginInfoId" value="${}" />-->
+                &lt;!&ndash;<input type="button" onclick="javascript:window.location.href='downloadAndUpload/page'" value="下载上传" />&ndash;&gt;
+                &lt;!&ndash;<input type="button" type="hidden" id="loginInfoId" value="${}" />&ndash;&gt;
                 <button onclick="loginInfo()" name="loginInfo" >登录信息提交</button>
-                <!--<input type="button" onclick="loginInfo()" name="loginInfo" value="登陆信息提交" />-->
+                &lt;!&ndash;<input type="button" onclick="loginInfo()" name="loginInfo" value="登陆信息提交" />&ndash;&gt;
             </div>
         </div>
     </div>
 </div>
-</body>
+</body>-->
 <div th:replace="common/script :: script"></div>
-<script th:inline="none" th:src="@{~/js/index.js}" src="static/js/index.js"></script>
 <script th:src="@{~/lib/select2/js/select2.min.js}" src="/static/lib/select2/js/select2.min.js"></script>
 <script th:src="@{~/lib/select2/js/i18n/zh-CN.js}" src="/static/lib/select2/js/i18n/zh-CN.js"></script>
+<script th:inline="none" th:src="@{~/js/index.js}" src="/static/js/index.js"></script>
+<script>
+    //JavaScript代码区域
+    /*layui.use('element', function(){
+        var element = layui.element;
+    });*/
+    layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+        var message = $("#message").val();
+        if(message === "不能为null"){
+            message = "请输入登录信息!"
+            $("#message").attr(message);
+        }
+        //触发事件
+        var active = {
+            setTop: function(){
+                var that = this;
+                //多窗口模式，层叠置顶
+                layer.open({
+                    type: 2 //此处以iframe举例
+                    ,title: '当你选择该窗体时，即会在最顶端'
+                    ,area: ['390px', '260px']
+                    ,shade: 0
+                    ,maxmin: true
+                    ,offset: [ //为了演示，随机坐标
+                        Math.random()*($(window).height()-300)
+                        ,Math.random()*($(window).width()-390)
+                    ]
+                    ,content: '//layer.layui.com/test/settop.html'
+                    ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+                    ,yes: function(){
+                        $(that).click();
+                    }
+                    ,btn2: function(){
+                        layer.closeAll();
+                    }
+
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                    }
+                });
+            }
+            ,confirmTrans: function(){
+                //配置一个透明的询问框
+                layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
+                    time: 20000, //20s后自动关闭
+                    btn: ['明白了', '知道了', '哦']
+                });
+            }
+            ,notice: function(){
+                //示范一个公告层
+                layer.open({
+                    type: 1
+                    ,title: false //不显示标题栏
+                    ,closeBtn: false
+                    ,area: '300px;'
+                    ,shade: 0.8
+                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,btn: ['火速填写', '残忍拒绝']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br> ' + message + '<br>我们此后的征途是星辰大海 ^_^</div>'
+                    ,success: function(layero){
+                        var btn = layero.find('.layui-layer-btn');
+                        btn.find('.layui-layer-btn0').attr({
+                            href: 'javascript:loginInfo();'
+                            ,target: '_blank'
+                        });
+                    }
+                });
+            }
+            ,offset: function(othis){
+                var type = othis.data('type')
+                    ,text = othis.text();
+
+                layer.open({
+                    type: 1
+                    ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                    ,id: 'layerDemo'+type //防止重复弹出
+                    ,content: '<div style="padding: 20px 100px;">'+ text +'</div>'
+                    ,btn: '关闭全部'
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            }
+        };
+        $('#layerDemo .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
+    /*$(function () {
+        var message = $("#message").val();
+        if(message === "不能为null"){
+            message = "请输入登录信息!"
+            $("#message").attr("value", message);
+        }
+        console.log("message的值：" + message);
+        if (message === "请输入登录信息!") {
+            $("#pop").click();
+        }
+    });*/
+</script>
 </html>
 
 

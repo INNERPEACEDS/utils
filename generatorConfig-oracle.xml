@@ -17,8 +17,8 @@
         </commentGenerator>
         <!--数据库连接信息 -->
         <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@127.0.0.1:1521/XE"
-                        userId="Thinking"
+                        connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"
+                        userId="wgb"
                         password="love"/>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -51,7 +51,23 @@
         <!--<table schema="wgb" tableName="BOOKRECORD" domainObjectName="BookRecord">
             <property name="useActualColumnNames" value="false" />
         </table>-->
-        <table tableName="IMAGE" domainObjectName="Image">
+        <!--<table tableName="IMAGE" domainObjectName="Image">
+            <property name="useActualColumnNames" value="false" />
+        </table>-->
+
+        <table tableName="SYS_MENU" domainObjectName="SysMenu">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        <table tableName="SYS_ROLE" domainObjectName="SysRole">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        <table tableName="SYS_ROLE_MENU" domainObjectName="SysRoleMenu">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        <table tableName="SYS_USER" domainObjectName="SysUser">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        <table tableName="SYS_USER_ROLE" domainObjectName="SysUserRole">
             <property name="useActualColumnNames" value="false" />
         </table>
     </context>

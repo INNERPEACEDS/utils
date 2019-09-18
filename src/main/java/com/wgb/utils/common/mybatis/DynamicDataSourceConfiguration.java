@@ -29,7 +29,7 @@ import java.util.Map;
 //@EnableAutoConfiguration
 @ComponentScan({"com.wgb.utils"})
 @AutoConfigureAfter({MasterConfig.class, Slave1Config.class, Slave2Config.class, OracleConfig.class})
-@MapperScan(basePackages = "com.wgb.utils.dao.oracle", sqlSessionTemplateRef = "dynamicSqlSessionTemplate")
+@MapperScan(basePackages = {"com.wgb.utils.dao.oracle","com.wgb.utils.dao.system"}, sqlSessionTemplateRef = "dynamicSqlSessionTemplate")
 public class DynamicDataSourceConfiguration {
 	/**
 	 * 主数据源标记

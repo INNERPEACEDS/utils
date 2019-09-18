@@ -13,10 +13,6 @@ import java.util.Date;
  */
 @Slf4j
 public class ParameterCheckUtil {
-	/**
-	 * 加密实例
-	 */
-	//public static Encrypt en = new Encrypt();
 
 	/**
 	 * 时间格式化
@@ -31,7 +27,7 @@ public class ParameterCheckUtil {
 	 * @return
 	 */
 	public static String nullReset(String parameter, Object object, String fieldName) {
-		if ((parameter != null) && (!("".equals(parameter))&&(!"all".equals(parameter)))){
+		if ((parameter != null) && !"".equals(parameter)){
 			fieldSetExecute(parameter,object,fieldName);
 		}else {
 			parameter = "";

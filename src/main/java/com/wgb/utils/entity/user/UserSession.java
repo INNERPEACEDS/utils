@@ -45,5 +45,35 @@ public class UserSession {
 		return System.currentTimeMillis() + SESSION_TIME_OUT;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Long getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(Long timeout) {
+		this.timeout = timeout;
+	}
+
+	public Set<String> getAuthUrl() {
+		return authUrl;
+	}
+
+	public void setAuthUrl(Set<String> authUrl) {
+		this.authUrl = authUrl;
+	}
 }
