@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 输出控制台 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<target>System.out</target>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern><![CDATA[ [%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%logger.%method:%line] -- %msg%n ]]></Pattern>
+		</encoder>
+	</appender>
+
+	<!-- 时间滚动输出日志 -->
+    <appender name="file-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${catalina.home}/logs/utils/utils.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.home}/logs/utils/utils.%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+        <encoder>
+             <pattern><![CDATA[ [%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%logger.%method:%line] -- %msg%n ]]></pattern>
+		</encoder>
+	</appender>
+   
+    <logger name="utils" additivity="false">
+        <appender-ref ref="file-info" />
+    </logger>
+   
+	<root level="INFO">
+		<appender-ref ref="console" />
+		<appender-ref ref="file-info" />
+	</root>
+</configuration>
