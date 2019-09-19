@@ -101,8 +101,7 @@ public class ShiroConfig {
 		// 除上以外所有url都必须认证通过才可以访问，未通过认证自动访问LoginUrl
 		// 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边:这是一个坑呢，一不小心代码就不好使了;
 		// authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
-		filterChainDefinitionMap.put("/**",
-				"user");
+		filterChainDefinitionMap.put("/**", "user");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -114,7 +113,6 @@ public class ShiroConfig {
 	 * 可见securityManager是整个shiro的核心；
 	 * @return
 	 */
-
 	@Bean
 	public EhCacheManager ehCacheManager(){
 		System.out.println("ShiroConfiguration.getEhCacheManager()");
@@ -134,16 +132,16 @@ public class ShiroConfig {
 		// 加载 shiroRealm
 		securityManager.setRealm(shiroRealm());
 		// 加载 cookie
-		securityManager.setRememberMeManager(rememberMeManager());
+		// securityManager.setRememberMeManager(rememberMeManager());
 
 		// 采用以下任意一种缓存方式
 		// 1.加载 redisManager
-		securityManager.setCacheManager(cacheManager());
+		// securityManager.setCacheManager(cacheManager());
 		// 2.注入缓存管理器
-		securityManager.setCacheManager(ehCacheManager());
+		// securityManager.setCacheManager(ehCacheManager());
 
 		// 加载 SessionManager
-		securityManager.setSessionManager(sessionManager());
+		// securityManager.setSessionManager(sessionManager());
 		return securityManager;
 	}
 

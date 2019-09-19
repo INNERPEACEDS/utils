@@ -4,6 +4,7 @@
 
 # 2019-09-18  
 #1.新增 springboot+shiro+Thymeleaf
+
 1、定义一个ShiroConfig，然后配置SecurityManager Bean，SecurityManager为Shiro的安全管理器，管理着所有Subject；
  
 2、在ShiroConfig中配置ShiroFilterFactoryBean，其为Shiro过滤器工厂类，依赖于SecurityManager；

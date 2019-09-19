@@ -16,7 +16,7 @@ import java.io.IOException;
  **/
 @Slf4j
 @Component
-@Order(1)
+@Order(0)
 @WebFilter(urlPatterns = "/*", filterName = "RequestFilter")
 public class RequestFilter implements Filter{
 	@Override

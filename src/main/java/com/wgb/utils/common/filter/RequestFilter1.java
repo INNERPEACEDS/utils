@@ -22,18 +22,18 @@ public class RequestFilter1 implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// 这里没有内容
-		log.info("RequestFilter init");
+		log.info("RequestFilter 1 init");
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		log.info("RequestFilter1 doFilter");
+		log.info("RequestFilter 1 doFilter");
 		chain.doFilter(request, response);
 	}
 
 	@Override
 	public void destroy() {
 		// 这里没有内容
-		log.info("RequestFilter1 destroy");
+		log.info("RequestFilter 1 destroy");
 	}
 }
