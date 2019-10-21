@@ -61,7 +61,7 @@ public class ThreadPoolTool<T,V> implements Runnable {
 	public static Class[] getClassTypes(Object... args) {
 		Class[] classTypes = new Class[args.length];
 		for (int i = 0; i < args.length; i++) {
-			classTypes[i] = args.getClass();
+			classTypes[i] = args[i].getClass();
 		}
 		return classTypes;
 	}

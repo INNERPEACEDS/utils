@@ -1,5 +1,7 @@
 package com.wgb.utils.util.concurrency.fork.join;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
@@ -10,6 +12,7 @@ import java.util.concurrent.RecursiveTask;
  * @author INNERPEACE
  * @date 2019/7/2
  **/
+@Slf4j
 public class CountTask extends RecursiveTask<Integer> {
 	/**
 	 * 阈值
@@ -23,12 +26,12 @@ public class CountTask extends RecursiveTask<Integer> {
 	}
 	@Override
 	protected Integer compute() {
-		int sum = 1;
+		int product = 1;
 		// 如果任务足够小就计算任务
 		boolean canCompute = (end - start) <= THRESHOLD;
 		if (canCompute) {
 			for (int i = start; i <= end; i++) {
-				sum *= i;
+				product *= i;
 			}
 		} else {
 			// 如果任务大于阀值，就分裂成两个子任务计算
@@ -42,18 +45,19 @@ public class CountTask extends RecursiveTask<Integer> {
 			int leftResult=leftTask.join();
 			int rightResult=rightTask.join();
 			// 合并子任务
-			sum = leftResult * rightResult;
+			product = leftResult * rightResult;
 		}
-		return sum;
+		return product;
 	}
 	public static void main(String[] args) {
 		ForkJoinPool forkJoinPool = new ForkJoinPool();
-		// 生成一个计算任务，负责计算 1+2+3+4
-		CountTask task = new CountTask(1, 10);
+		// 生成一个计算任务，负责计算 3*4*5*...15
+		CountTask task = new CountTask(3, 15);
 		// 执行一个任务
 		Future<Integer> result = forkJoinPool.submit(task);
 		try {
-			System.out.println(result.get());
+			log.info("执行结果：{}", result.get());
+			// System.out.println(result.get());
 		} catch (InterruptedException | ExecutionException e) {
 		}
 	}

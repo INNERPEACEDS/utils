@@ -22,7 +22,7 @@ public class PointCut {
 
 	@Pointcut("execution(* com.wgb.utils.util.aop.*.*(..))")
     public void pointCut(){
-
+		// System.out.println("执行pointCut方法");
 	}
 
 	@Before("pointCut()")

@@ -63,7 +63,7 @@ public class StringUtil {
      * @param values
      * @return
      */
-    public static int[] ConvertAllStringsToInts(String[] values) {
+    public static int[] convertAllStringsToInts(String[] values) {
         if (values == null) {
             return null;
         }
@@ -71,6 +71,7 @@ public class StringUtil {
         int count = 0;
         for (String value : values) {
             if (!RegularUtil.isInteger(value)) {
+                log.error("字符中包含非数字字符");
                 return null;
             }
             ints[count++] = Integer.parseInt(value);
@@ -90,7 +91,7 @@ public class StringUtil {
      * @return
      */
     public static Map<String, String> stringToMap(String str) {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(2);
         log.info("要转的str：{}", str);
         List<String> list = extractMessageByRegular(str);
         if (list.size() != 1) {
@@ -186,7 +187,7 @@ public class StringUtil {
      */
     public static List<String> extractMessageByRegular(String msg){
 
-        List<String> list=new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         Pattern p = Pattern.compile("(\\[[^\\]]*\\])");
         Matcher m = p.matcher(msg);
         while(m.find()){

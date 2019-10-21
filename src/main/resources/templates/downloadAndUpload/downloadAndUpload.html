@@ -17,7 +17,8 @@
                 <td align="center">
                 </td>
                 <td height="30" align="center" colspan="2">
-                    <input type="button" class="sybutton" value="返回" onclick="window.history.go(-1);" />
+                    <button type="button" class="layui-btn layui-btn-warm" onclick="window.history.go(-1);">返回</button>
+                    <!--<input type="button" class="sybutton" value="返回"  />-->
                 </td>
             </tr>
         </table>
@@ -29,10 +30,12 @@
             </tr>
             <tr>
                 <div>
-                    <input id="serial" name="serial" placeholder="请输入想要获取图片的序号(uuid生成的id)" />
-                    <button onclick="getImage();">获取</button>
-                    <button onclick="javascript:window.location.href='imageIndex'">上传数据信息</button>
-                    <button onclick="uploadDataInfo();">上传数据信息(新窗口)</button>
+                    <div class="layui-input-inline">
+                        <input type="text" id="serial" name="serial" placeholder="请输入图片序号(UUID)"  class="layui-input">
+                    </div>
+                    <button type="button" class="layui-btn layui-btn-normal" onclick="getImage();">获取</button>
+                    <button type="button" class="layui-btn layui-btn-normal" onclick="javascript:window.location.href='imageIndex'">上传数据信息</button>
+                    <button type="button" class="layui-btn layui-btn-normal" onclick="uploadDataInfo();">上传数据信息(新窗口)</button>
                 </div>
                 <div th:if="${imageAddress != null}">
                     <img id="imgInfo" data-action="zoom" class="pull-left" width="150px" height="100px" th:src="${imageAddress}">
@@ -109,13 +112,15 @@
                     <span>下载一般文件:&nbsp;&nbsp;</span>
                 </td>
                 <td width="60%">
-                    <input type="button" class="sybutton" value="下载一般文件" style="width:200px;" onclick="downloadFile();" >
+                    <button type="button" class="layui-btn layui-btn-normal" onclick="downloadFile();">下载一般文件</button>
                 </td>
                 <br/>&nbsp;
                 <td>
                     <form action="upload" method="post" enctype="multipart/form-data">
+<!--                        <button type="file" class="layui-btn layui-btn-normal" onclick="downloadFile();" name="uploadFile"></button>-->
                         <input type="file" name="uploadFile" /><br>
-                        <input type="submit" value="上传" />
+                        <button type="submit" class="layui-btn layui-btn-normal">上传</button>
+<!--                        <input type="submit" value="上传" />-->
                     </form>
                     <input type="text" id="uploadResult" disabled="disabled" th:value="${uploadResult != null ? uploadResult : null}" />
                 </td>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+	<!-- 定义全局参数常量 -->
+	<property name="log.maxHistory" value="5"/><!-- 30表示30个 -->
+
 	<!-- 输出控制台 -->
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<target>System.out</target>
@@ -14,8 +17,12 @@
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>INFO</level>
 		</filter>
+		<!-- 日志滚动策略 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 历史日志文件的存放路径和名称 -->
 			<fileNamePattern>${catalina.home}/logs/utils/utils.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- 日志文件最大的保存历史 数量-->
+			<maxHistory>${log.maxHistory}</maxHistory>
 		</rollingPolicy>
         <encoder>
              <pattern><![CDATA[ [%-5level] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] [%logger.%method:%line] -- %msg%n ]]></pattern>

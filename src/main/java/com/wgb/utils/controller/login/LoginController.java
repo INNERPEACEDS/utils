@@ -49,7 +49,7 @@ public class LoginController {
     @RequestMapping("/loginIndex")
     public String index(Model model) {
         // 登录成后，即可通过Subject获取登录的用户信息
-        Object user = SecurityUtils.getSubject().getPrincipal();
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("user", user);
         return "loginIndex";
     }
