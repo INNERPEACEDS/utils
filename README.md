@@ -4,12 +4,15 @@
 
 # 2019-08-20
 #1.线程池工具封装
+
 包路径：com.wgb.utils.util.concurrency
 
 1.提供要使用线程的类、方法和参数
 
 2.使用线程池工具开启线程执行多线程
+
 #2.金典排序算法
+
 包路径：com.wgb.utils.util.algorithm.sort
 
 1.冒泡排序,平均时间复杂度是O(n^2)
@@ -29,7 +32,9 @@
 8.希尔排序，平均时间复杂度O(n^(1.3—2))
 
 #3.汉诺塔算法
+
 包路径：com.wgb.utils.util.algorithm.hanoi
+
 # 2019-09-18  
 #1.新增 springboot+shiro+Thymeleaf
 
@@ -42,6 +47,7 @@
 注意：使用shiro时，请关闭热部署。
 
 #2.新增Spring的AOP示例
+
 包路径：com.wgb.utils.util.aop
 
 使用Spring的AOP切面示例，研究Spring架构详细流程，请看源码，地址：https://github.com/spring-projects/spring-framework
@@ -60,10 +66,12 @@
 2.在application.properties中配置spring.profiles.active属性选择开发、测试、生产环境。
 
 #2.添加日志输出文件
+
 日志输出文件按天打印，配置日志文件为resources/logback.xml
 
 # 2019-10-21
 #1.文件中写对象系列号测试
+
 包路径：com.wgb.utils.test.serializable
 
 1.对对象数据序列号写入文件
@@ -71,7 +79,9 @@
 2.读取文件中的对象进行反序列化
 
 3.再次操作对象数据
+
 #2.连接zookeeper
+
 包路径：com.wgb.utils.util.distributed
 
 1.连接zookeeper并且注册一个默认的监听器
@@ -81,6 +91,7 @@
 3.获取更新的目录节点数据
 
 #3.远程过程调用RPC（Remote Procedure Call）简单实现
+
 包路径：com.wgb.utils.util.rpc
 
 1.provider服务提供者暴露
