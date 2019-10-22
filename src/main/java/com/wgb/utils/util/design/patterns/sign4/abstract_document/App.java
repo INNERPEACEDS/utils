@@ -22,9 +22,7 @@
  */
 package com.wgb.utils.util.design.patterns.sign4.abstract_document;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.extern.slf4j.Slf4j;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,15 +37,14 @@ import java.util.Map;
  * {@link Document}) interface. Traits are then defined to enable access to
  * properties in usual, static way.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Executes the App
    */
   public App() {
-    LOGGER.info("Constructing parts and car");
+    log.info("Constructing parts and car");
 
     Map<String, Object> carProperties = new HashMap<>();
     carProperties.put(Property.MODEL.toString(), "300SL");
@@ -67,11 +64,11 @@ public class App {
 
     Car car = new Car(carProperties);
 
-    LOGGER.info("Here is our car:");
-    LOGGER.info("-> model: {}", car.getModel().get());
-    LOGGER.info("-> price: {}", car.getPrice().get());
-    LOGGER.info("-> parts: ");
-    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}", p.getType().get(), p.getModel().get(), p.getPrice().get()));
+    log.info("Here is our car:");
+    log.info("-> model: {}", car.getModel().get());
+    log.info("-> price: {}", car.getPrice().get());
+    log.info("-> parts: ");
+    car.getParts().forEach(p -> log.info("\t{}/{}/{}", p.getType().get(), p.getModel().get(), p.getPrice().get()));
   }
 
   /**
