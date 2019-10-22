@@ -1,4 +1,4 @@
-package com.wgb.utils.test.annotation;
+package com.wgb.utils.util.annotation;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,7 +26,7 @@ public class UserCaseTest {
 		log.info("validatePassword():{} ", passwordUtils.validatePassword(password));
 		for (Method m : cl.getDeclaredMethods()) {
 			// 获得注解的对象
-			UseCase.UseCases uc = m.getAnnotation(UseCase.UseCases.class);
+			UseCase.UseCasesInterface uc = m.getAnnotation(UseCase.UseCasesInterface.class);
 			if (uc != null) {
 				System.out.println("Found Use Case:" + uc.id() + " "
 						+ uc.description());

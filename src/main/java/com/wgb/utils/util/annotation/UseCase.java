@@ -1,4 +1,4 @@
-package com.wgb.utils.test.annotation;
+package com.wgb.utils.util.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 public class UseCase {
 	@Target(ElementType.METHOD)
 	@Retention(RetentionPolicy.RUNTIME)
-	public @interface UseCases{
+	public @interface UseCasesInterface{
 		public String id();
 		public String description() default "no description";
 	}

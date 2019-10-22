@@ -1,4 +1,4 @@
-package com.wgb.utils.test.serializable;
+package com.wgb.utils.util.serializable;
 
 import java.io.*;
 
