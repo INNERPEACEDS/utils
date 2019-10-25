@@ -61,6 +61,11 @@ public class RegularUtil {
 	 */
 	public static final String PASSWORD3 = "^(?=.*\\d)(?=.*[a-zA-Z])(?=.*[^A-Za-z0-9]).{8}$";
 
+	/**
+	 * 以"逗号（或者逗号前后有空字符）"分割字符
+	 */
+	public static final Pattern COMMA_SPLIT_PATERN = Pattern.compile("\\s*[,]+\\s*");
+
 	// ab&c3
 
     /**
@@ -123,8 +128,16 @@ public class RegularUtil {
 
     public static void main(String[] args) {
         // regularTest();
-	    password1Test();
+	    // password1Test();
+	    regularTest1();
     }
+
+	public static void regularTest1() {
+		String[] a = COMMA_SPLIT_PATERN.split("aadke sd      ,     d dkl,d  dkls");
+		for (String a1 : a) {
+			System.out.println(a1);
+		}
+	}
 
 	public static void regularTest() {
 		String regular = "^in*.*$";

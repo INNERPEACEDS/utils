@@ -12,13 +12,21 @@ import java.util.stream.Stream;
 @Slf4j
 public class StreamUtil {
 	public static Stream<String> conversion(String str) {
-		List<String> result = new ArrayList<>();
 		log.info("str:{}", str);
+		if ("your".equals(str)) {
+			// 返回字符串流
+			return Stream.of(str);
+		}
+		List<String> result = new ArrayList<>();
 		for (char c : str.toCharArray()) {
 			result.add(String.valueOf(c));
 		}
+		result.add(String.valueOf('#'));
+		// 此处返回字符流
 		return result.stream();
 	}
+
+
 
 	public static void main(String[] args) {
 		String[] yourName = {"your", "name", "name"};

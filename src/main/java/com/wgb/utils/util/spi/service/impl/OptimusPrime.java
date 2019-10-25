@@ -1,6 +1,6 @@
-package com.wgb.utils.util.java.spi.service.impl;
+package com.wgb.utils.util.spi.service.impl;
 
-import com.wgb.utils.util.java.spi.service.Robot;
+import com.wgb.utils.util.spi.service.Robot;
 
 /**
  * @author INNERPEACE
