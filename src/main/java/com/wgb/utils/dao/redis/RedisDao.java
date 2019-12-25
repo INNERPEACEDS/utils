@@ -1,12 +1,14 @@
 package com.wgb.utils.dao.redis;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +22,9 @@ import java.util.concurrent.TimeUnit;
 public class RedisDao {
 	@Resource
 	private StringRedisTemplate template;
+
+	@Resource
+	private RedisTemplate redisTemplate;
 
 	/**
 	 * 根据key获取过期时间
@@ -169,5 +174,58 @@ public class RedisDao {
 	}
 
 
+	/**
+	 * 批量删除key
+	 *
+	 * @param pattern
+	 */
+	public void removePattern(final String pattern) {
+		Set<String> keys = template.keys(pattern);
+		if (null != keys && keys.size() > 0) {
+			template.delete(keys);
+		}
+	}
 
+	/**
+	 * 模糊查询redis key集合
+	 *
+	 * @param patternKey
+	 * @return
+	 */
+	public Set<String> getKeys(String patternKey) {
+		return template.keys(patternKey);
+	}
+
+	/**
+	 * 模糊删除redis key值
+	 *
+	 * @param patternKey
+	 */
+	public void deleteKeys(String patternKey) {
+		Set<String> keySet = getKeys(patternKey);
+		if (!CollectionUtils.isEmpty(keySet)) {
+			template.delete(keySet);
+		}
+	}
+
+	public boolean batchSetForValue(Map<String, Long> map) {
+		try {
+			template.executePipelined(new SessionCallback<Object>() {
+				@Override
+				public <K, V> Object execute(RedisOperations<K, V> operations) throws DataAccessException {
+					for (Map.Entry<String, Long> entry : map.entrySet()) {
+						String key = entry.getKey();
+						Long value = entry.getValue();
+						template.opsForValue().increment(key, value);
+					}
+					return null;
+				}
+			});
+		} catch (Exception e) {
+			log.error("批量插入Redis数据异常", e);
+			return false;
+		}
+		return true;
+	}
 }
+

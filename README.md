@@ -119,3 +119,27 @@ SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI 的
 1.DUBBO SPI 启动自加载实现类
 
 2.DUBBO SPI 自适应扩展加载实现类（生成代理）
+
+# 2019-11-07
+#1.RabbitMQ使用模板
+
+包路径：com.wgb.utils.util.jms
+
+1.接收消息放入RabbitMQ队列
+
+2.从RabbitMQ队列中拿数据进行处理
+
+#2.spring获取上下文
+
+包路径：com.wgb.utils.util.spring
+
+通过Bean名称获取Bean对象
+
+#3.读取配置文件信息解析成对象
+
+1.在配置文件中以对象标签填写信息
+
+2.读取并解析配置文件为相应对象，进行存储在集合中
+
+3.从存储集合中获取对象信息，进行操作
+

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -30,7 +31,7 @@ public class RedisServiceTest {
 	 */
 	@Test
 	public void redisPutTest() {
-		int type = 4;
+		int type = 6;
 		switch (type) {
 			case 1:
 				// 设置过期时间，时间过期后Redis不进行缓存删除
@@ -48,6 +49,8 @@ public class RedisServiceTest {
 			case 5:
 				setForZset();
 				break;
+			case 6:
+				setForMap();
 			default:
 		}
 	}
@@ -163,6 +166,33 @@ public class RedisServiceTest {
 	}
 
 	public void setForZset() {
+		String key = "20191204";
+		String[] values = {"set1", "set2", "set3", "set4", "set1", "set2", "set1"};
+		long[] timeouts = {200, 200, 200, 200};
+		long timeout = 200;
+		for (int i = 0; i < values.length; i++) {
+			try {
+				Thread.sleep((i+5)*100 );
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			redisDao.setForZset(key, values[i], 100, timeout);
+		}
+	}
 
+	public void setForMap() {
+		HashMap<String, Long> map = new HashMap<>();
+		// HashMap<Object, Object> map = new HashMap<>();
+		String[] keys = {"2019120401", "2019120402", "2019120403", "2019120404", "2019120405"};
+		Long[] values = {10L, 20L, 30L, 40L, 50L};
+		for (int i = 0; i < keys.length; i++) {
+			try {
+				Thread.sleep((i+5)*100 );
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			map.put(keys[i], values[i]);
+		}
+		redisDao.batchSetForValue(map);
 	}
 }

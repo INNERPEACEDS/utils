@@ -2,11 +2,9 @@ package com.wgb.utils.util;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author : innerpeace
@@ -14,20 +12,32 @@ import java.util.Map;
  */
 @Slf4j
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // stringTest();
-        dateTest();
+        dateFormatTest();
+        // dateTest();
+        // System.out.println("执行");
     }
 
-    public static void dateTest() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    public static void dateTest() throws Exception {
+        throw new Exception("异常");
+        /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date date = sdf.parse("2019-07-23");
             log.info("date:{}", date);
         } catch (Exception e) {
             log.error("异常");
-        }
+        }*/
+    }
 
+    public static void dateFormatTest() {
+        String dataStr = "2019-23-43";
+        try {
+            Date date = new SimpleDateFormat("yyyyMMdd").parse(dataStr);
+            System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void stringTest() {

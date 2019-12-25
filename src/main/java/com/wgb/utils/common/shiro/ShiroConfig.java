@@ -19,9 +19,7 @@ import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,11 +40,12 @@ import java.util.LinkedHashMap;
  * @date 2019/8/30
  */
 @Slf4j
-@Component
-@Configuration
+//暂时不使用shiro
+//@Component
+//@Configuration
 public class ShiroConfig {
 
-	@Bean
+//	@Bean
 	public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		// 设置securityManager（必须设置）
@@ -74,6 +73,10 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/", "anon");
 
 		// 非shiro项目功能页面（由于调试时开启热部署，会导致项目报错，所以在使用shiro项目时关闭热部署，此处添加页面为非shiro项目功能）
+		filterChainDefinitionMap.put("/rabbitMq/page", "anon");
+		filterChainDefinitionMap.put("/rabbitMq/queueOne", "anon");
+		filterChainDefinitionMap.put("/rabbitMq/queueTwo", "anon");
+
 		filterChainDefinitionMap.put("/i", "anon");
 		filterChainDefinitionMap.put("/index", "anon");
 		filterChainDefinitionMap.put("/downloadAndUpload/page", "anon");
@@ -113,7 +116,7 @@ public class ShiroConfig {
 	 * 可见securityManager是整个shiro的核心；
 	 * @return
 	 */
-	@Bean
+//	@Bean
 	public EhCacheManager ehCacheManager(){
 		System.out.println("ShiroConfiguration.getEhCacheManager()");
 		EhCacheManager cacheManager = new EhCacheManager();
@@ -126,7 +129,7 @@ public class ShiroConfig {
 	 *
 	 * @return
 	 */
-	@Bean
+//	@Bean
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		// 加载 shiroRealm

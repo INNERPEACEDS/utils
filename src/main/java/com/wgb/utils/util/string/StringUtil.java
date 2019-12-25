@@ -1,10 +1,11 @@
 package com.wgb.utils.util.string;
 
+import com.google.common.base.Charsets;
 import lombok.extern.slf4j.Slf4j;
-
-
 import com.wgb.utils.util.regular.RegularUtil;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -223,6 +224,16 @@ public class StringUtil {
             rate = rateValue.toString();
         }
         return rate;
+    }
+
+    public static String inputStreamToString(InputStream in) throws Exception {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] data = new byte[1024];
+        int count = -1;
+        while ((count = in.read(data, 0, 1024)) != -1) {
+            outStream.write(data, 0, count);
+        }
+        return new String(outStream.toByteArray(), Charsets.UTF_8);
     }
 
 }

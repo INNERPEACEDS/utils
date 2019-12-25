@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:float="http://www.w3.org/1999/xhtml" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="common/indexLink :: link"/>
+    <title>RabbitMQ</title>
+</head>
+<body>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>生产队列</legend>
+    </fieldset>
+    <div>
+        <button type="button" class="layui-btn layui-btn-normal" onclick="javascript:window.location.href='queueOne'">生产队列一</button>
+        <button type="button" class="layui-btn layui-btn-normal" onclick="javascript:window.location.href='queueTwo'">生产队列二</button>
+    </div>
+    <input type="hidden" id="result" disabled="disabled" th:value="${result != null ? result : null}" />
+</body>
+<div th:replace="common/script :: script"></div>
+<script>
+    var result = $('#result').val();
+    console.log(result);
+    // 非空字符正则表达式匹配
+    var regular = /[\S]+/;
+    if (regular.test(result)) {
+        alert(result);
+    }
+</script>
+
+</html>

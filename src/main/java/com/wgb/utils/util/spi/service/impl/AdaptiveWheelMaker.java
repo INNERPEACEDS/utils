@@ -27,6 +27,18 @@ public class AdaptiveWheelMaker implements WheelMaker {
 		// 2.通过自适应扩展加载具体的 WheelMaker
 		WheelMaker wheelMaker = ExtensionLoader.getExtensionLoader(WheelMaker.class).getAdaptiveExtension();
 		// 3.调用目标方法
+		// 不能扩展没有URL参数的方法
+		//return wheelMaker.makeNewWheel(url.toString());
 		return wheelMaker.makeWheel(url);
 	}
+
+	@Override
+	public Wheel makeNewWheel(String newWheel) {
+		Wheel wheel = new Wheel();
+		newWheel = newWheel + "AdaptiveWheelMaker";
+		wheel.setColor(newWheel);
+		return wheel;
+	}
+
+
 }

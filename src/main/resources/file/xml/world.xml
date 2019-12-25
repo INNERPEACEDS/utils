@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<world>
+    <human>
+        <action>10</action>
+        <thinking>
+            <selfless>11</selfless>
+            <selfish>12</selfish>
+        </thinking>
+    </human>
+    <human>
+        <action>20</action>
+        <thinking>
+            <selfless>21</selfless>
+            <selfish>22</selfish>
+        </thinking>
+    </human>
+    <forest>
+        <flower>-00</flower>
+    </forest>
+</world>

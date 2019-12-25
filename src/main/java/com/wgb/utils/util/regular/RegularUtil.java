@@ -1,8 +1,10 @@
 package com.wgb.utils.util.regular;
 
+import com.alibaba.druid.util.StringUtils;
 import com.wgb.utils.util.string.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -64,7 +66,7 @@ public class RegularUtil {
 	/**
 	 * 以"逗号（或者逗号前后有空字符）"分割字符
 	 */
-	public static final Pattern COMMA_SPLIT_PATERN = Pattern.compile("\\s*[,]+\\s*");
+	public static final Pattern COMMA_SPLIT_PATTERN = Pattern.compile("\\s*[,]+\\s*");
 
 	// ab&c3
 
@@ -133,7 +135,7 @@ public class RegularUtil {
     }
 
 	public static void regularTest1() {
-		String[] a = COMMA_SPLIT_PATERN.split("aadke sd      ,     d dkl,d  dkls");
+		String[] a = COMMA_SPLIT_PATTERN.split("aadke sd      ,     d dkl,d  dkls");
 		for (String a1 : a) {
 			System.out.println(a1);
 		}
@@ -148,5 +150,57 @@ public class RegularUtil {
 	public static void password1Test() {
 		String value = "123kaddddddd";
 		log.info("结果：{}", value.matches(PASSWORD2));
+	}
+
+	/**
+	 * <B>方法名称：</B>校验是否是有效JSON数据<BR>
+	 * <B>概要说明：</B>由于JAVA正则表达式没法递归，不能一个表达式进行匹配，只能用JAVA进行递归
+	 * 字符串传来后进行匹配，普通类型数据仅匹配格式不捕获，将可能的JSON类型（[] {}）进行捕获，
+	 * 递归进行校验，共设置四个捕获组，为了保证逗号分隔的格式是严格正确的，没有想到好的方法简化正则表达式
+	 * 只能把数据分成两类，一类带逗号一类不带分别进行匹配.由于捕获组仅能匹配最后一个捕获结果，所以需要手动 进行字符串截取进行递归验证。
+	 *
+	 * 严格按照JSON官网给出的数据格式 双引号引起来的字符串 数字 JSONOBJECT JSONARRAY 波尔值和JSONNull
+	 * 在[]{}以及逗号前后可以有任意空字符。 <BR>
+	 *
+	 * @param value 数据
+	 * @return boolean 是/不是
+	 */
+	public boolean isJSON(String value) {
+		try {
+			boolean result = false;
+			String jsonRegexp = "^(?:(?:\\s*\\[\\s*(?:(?:"
+					+ "(?:\"[^\"]*?\")|(?:true|false|null)|(?:[+-]?\\d+(?:\\.?\\d+)?(?:[eE][+-]?\\d+)?)|(?<json1>(?:\\[.*?\\])|(?:\\{.*?\\})))\\s*,\\s*)*(?:"
+					+ "(?:\"[^\"]*?\")|(?:true|false|null)|(?:[+-]?\\d+(?:\\.?\\d+)?(?:[eE][+-]?\\d+)?)|(?<json2>(?:\\[.*?\\])|(?:\\{.*?\\})))\\s*\\]\\s*)"
+					+ "|(?:\\s*\\{\\s*"
+					+ "(?:\"[^\"]*?\"\\s*:\\s*(?:(?:\"[^\"]*?\")|(?:true|false|null)|(?:[+-]?\\d+(?:\\.?\\d+)?(?:[eE][+-]?\\d+)?)|(?<json3>(?:\\[.*?\\])|(?:\\{.*?\\})))\\s*,\\s*)*"
+					+ "(?:\"[^\"]*?\"\\s*:\\s*(?:(?:\"[^\"]*?\")|(?:true|false|null)|(?:[+-]?\\d+(?:\\.?\\d+)?(?:[eE][+-]?\\d+)?)|(?<json4>(?:\\[.*?\\])|(?:\\{.*?\\}))))\\s*\\}\\s*))$";
+
+			Pattern jsonPattern = Pattern.compile(jsonRegexp);
+
+			Matcher jsonMatcher = jsonPattern.matcher(value);
+
+			if (jsonMatcher.matches()) {
+				result = true;
+				for (int i = 4; i >= 1; i--) {
+					if (!StringUtils.isEmpty(jsonMatcher.group("json" + i))) {
+						result = this.isJSON(jsonMatcher.group("json" + i));
+						if (!result) {
+							break;
+						}
+						if (i == 3 || i == 1) {
+							result = this.isJSON(value.substring(0, jsonMatcher.start("json" + i))
+									+ (i == 3 ? "\"JSON\"}" : "\"JSON\"]"));
+							if (!result) {
+								break;
+							}
+						}
+					}
+				}
+
+			}
+			return result;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

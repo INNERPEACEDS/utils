@@ -16,4 +16,12 @@ public class MichelinWheelMaker implements WheelMaker {
 		wheel.setColor("black");
 		return wheel;
 	}
+
+	@Override
+	public Wheel makeNewWheel(String newWheel) {
+		Wheel wheel = new Wheel();
+		newWheel = newWheel + "MichelinWheelMaker";
+		wheel.setColor(newWheel);
+		return wheel;
+	}
 }
