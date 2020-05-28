@@ -1,0 +1,6 @@
+[INFO ] [2020-05-27 23:13:58.696] [main] [com.wgb.utils.test.high.concurrency.PrimeGenerator.run:35] -- 开始等待
+[INFO ] [2020-05-27 23:13:58.721] [main] [com.wgb.utils.test.high.concurrency.UnCatchExceptionTest.timedRun:34] -- 异常：
+java.lang.RuntimeException: 运行异常
+	at com.wgb.utils.test.high.concurrency.PrimeGenerator.run(PrimeGenerator.java:37)
+	at com.wgb.utils.test.high.concurrency.UnCatchExceptionTest.timedRun(UnCatchExceptionTest.java:31)
+	at com.wgb.utils.test.high.concurrency.UnCatchExceptionTest.main(UnCatchExceptionTest.java:21)

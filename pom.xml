@@ -367,18 +367,42 @@
         <!--xml和json转换  结束-->
         <!-- Spring Boot AMQP依赖 开始1.*版本的spring -->
         <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-amqp</artifactId>
-    </dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
         <!--<dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
             <version>2.0.4.RELEASE</version>
         </dependency>-->
         <!-- Spring Boot AMQP依赖 结束 -->
+
+        <!-- 二维码 依赖开始-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        <!-- 用于页面显示 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        <!-- 二维码 依赖结束-->
+
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib 开始 -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier><!--指定jdk版本 -->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib 结束 -->
     </dependencies>
 
     <build>
+        <finalName>INNER_PEACE</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

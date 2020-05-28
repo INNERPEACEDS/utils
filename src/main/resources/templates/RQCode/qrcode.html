@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:float="http://www.w3.org/1999/xhtml" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="common/indexLink :: link"/>
+    <title>RQ Code</title>
+</head>
+<body>
+
+
+<!--
+<div>
+    <button type="button" class="layui-btn layui-btn-normal" onclick="javascript:window.location.href='queueOne'">生产队列一</button>
+    <button type="button" class="layui-btn layui-btn-normal" onclick="javascript:window.location.href='queueTwo'">生产队列二</button>
+</div>
+
+-->
+<div class="container">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>生成二维码</legend>
+    </fieldset>
+    <form action="/qrCode/qrimage" method="post" enctype="multipart/form-data" >
+        <textarea name="qrImageData" id="qrImageData" cols="60" rows="10"></textarea>
+        <input type="file" name="insertImage" class="layui-btn layui-btn-normal" value="嵌入图片"/><br>
+        <button type="submit" class="layui-btn layui-btn-normal">生成二维码</button>
+    </form>
+    <div th:text="true" th:if="${result == '0000'}">
+        <img id="qrImage" alt="qrcode" th:src="@{'/qrCode/qrimage'}" />
+    </div>
+
+    <input type="hidden" id="result" disabled="disabled" th:value="${result != null ? result : null}" />
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>解析二维码</legend>
+    </fieldset>
+    <form action="/qrCode/parse" method="post" enctype="multipart/form-data">
+        <!--                        <button type="file" class="layui-btn layui-btn-normal" onclick="downloadFile();" name="uploadFile"></button>-->
+        <input type="file" name="file" /><br>
+        <button type="submit" class="layui-btn layui-btn-normal">上传</button>
+        <!--                        <input type="submit" value="上传" />-->
+    </form>
+
+    <textarea name="parseQRCodeData" id="parseQRCodeData" cols="60" rows="10" th:text="${parseQRCodeData}">
+    </textarea>
+
+    <input type="text" id="allResult" disabled="disabled" th:value="${allResult != null ? allResult : null}" />
+    <footer>
+        <p>
+            © <a >好的呀</a> 2030
+        </p>
+    </footer>
+</div>
+
+</body>
+<div th:replace="common/script :: script"></div>
+<script>
+    $("#qrImage").hide();
+    var result = $('#result').val();
+    console.log(result);
+    // 非空字符正则表达式匹配
+    /*var regular = /[\S]+/;
+    if (regular.test(result)) {
+        alert(result);
+    }*/
+    if (result == "0000") {
+        $("#qrImage").show();
+    }
+</script>
+
+</html>

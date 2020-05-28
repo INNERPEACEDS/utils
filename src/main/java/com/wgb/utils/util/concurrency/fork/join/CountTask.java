@@ -42,8 +42,8 @@ public class CountTask extends RecursiveTask<Integer> {
 			leftTask.fork();
 			rightTask.fork();
 			// 等待子任务执行完，并得到其结果
-			int leftResult=leftTask.join();
-			int rightResult=rightTask.join();
+			int leftResult = leftTask.join();
+			int rightResult = rightTask.join();
 			// 合并子任务
 			product = leftResult * rightResult;
 		}

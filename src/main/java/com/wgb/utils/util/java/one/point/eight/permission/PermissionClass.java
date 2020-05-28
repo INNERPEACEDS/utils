@@ -1,5 +1,8 @@
 package com.wgb.utils.util.java.one.point.eight.permission;
 
+import com.wgb.utils.util.java.one.point.eight.lambda.MyLambda;
+import com.wgb.utils.util.java.one.point.eight.lambda.MyLambdaImpl;
+
 /**
  * @author 20131
  */
@@ -16,7 +19,11 @@ public class PermissionClass {
 	}
 
 	public static void main(String[] args) {
-		PermissionClass permissionClass = new PermissionClass();
-		permissionClass.test();
+		/*PermissionClass permissionClass = new PermissionClass();
+		permissionClass.test();*/
+		MyLambda myLambda = new MyLambdaImpl();
+		System.out.print(myLambda.test3());
+		MyLambda m = y -> System.out.println(y);
+		m.test1("好的呀");
 	}
 }

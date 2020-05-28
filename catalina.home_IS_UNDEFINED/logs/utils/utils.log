@@ -1,3 +1,6 @@
-[INFO ] [2019-10-22 11:49:53.771] [main] [com.wgb.utils.util.rpc.provider.ProviderApplication.run:30] -- request is CalculateRpcRequest{method='add', a=6, b=6}
-[INFO ] [2019-10-22 11:49:53.805] [main] [com.wgb.utils.util.rpc.consumer.service.CalculatorRemoteImpl.add:35] -- response is 12
-[INFO ] [2019-10-22 11:49:53.813] [main] [com.wgb.utils.util.rpc.consumer.ConsumerApplication.main:15] -- result is 12
+[INFO ] [2020-05-28 11:36:21.208] [main] [com.wgb.utils.test.high.concurrency.PrimeGenerator.run:35] -- 开始等待
+[INFO ] [2020-05-28 11:36:21.244] [main] [com.wgb.utils.test.high.concurrency.UnCatchExceptionTest.timedRun:34] -- 异常：
+java.lang.RuntimeException: 运行异常
+	at com.wgb.utils.test.high.concurrency.PrimeGenerator.run(PrimeGenerator.java:37)
+	at com.wgb.utils.test.high.concurrency.UnCatchExceptionTest.timedRun(UnCatchExceptionTest.java:31)
+	at com.wgb.utils.test.high.concurrency.UnCatchExceptionTest.main(UnCatchExceptionTest.java:21)

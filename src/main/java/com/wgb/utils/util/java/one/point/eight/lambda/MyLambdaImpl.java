@@ -10,13 +10,14 @@ public class MyLambdaImpl implements MyLambda {
 
 	@Override
 	public void test1(String y) {
-
+//		System.out.println(y + "a" + y);
 	}
 
 	public static void main(String[] args) {
 		MyLambda myLambda = new MyLambdaImpl();
 		System.out.print(myLambda.test3());
 		MyLambda m = y -> System.out.println(y);
+//		myLambda.test1("好的呀");
 		m.test1("好的呀");
 	}
 }

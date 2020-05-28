@@ -1,6 +1,7 @@
 package com.wgb.utils.util.java.one.point.eight;
 
 import com.wgb.utils.util.java.one.point.eight.permission.PermissionClass;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -8,6 +9,8 @@ import javax.script.ScriptException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.*;
@@ -22,10 +25,12 @@ import java.util.stream.Collectors;
  * @author INNERPEACE
  * @date 2019/8/2 18:46
  **/
+@Slf4j
 public class JavaOnePointEightTest {
 
 	public static void main(String[] args) {
-		// methodReference();
+		testUrlTransport();
+//		 methodReference();
 		// sort();
 		// functionalInterface();
 		// stream();
@@ -33,7 +38,7 @@ public class JavaOnePointEightTest {
 		// testLocalDateTime();
 		// testZonedDateTime();
 		// testBase64();
-		testBase641();
+//		testBase641();
 	}
 
 	public static void javaDefaultMethodPermissionTest() {
@@ -42,14 +47,15 @@ public class JavaOnePointEightTest {
 	}
 
 	public static void methodReference() {
-		UserInterface<String> user = User::getName;
-		user.convert("测试");
+//		UserInterface<String> user = User::getName;
+//		user.convert("测试");
+//
+//		UserInterface<String> userInterface = User::getName;
+//		userInterface.convert("自定义function");
 
-		UserInterface<String> userInterface = User::getName;
-		userInterface.convert("自定义function");
-
-		UserInterface<String> userInterface1 = User::new;
-		userInterface1.convert("自定义function1");
+		UserInterface<String, User, String> userInterface1 = str -> new User(str);
+		User user = userInterface1.convert("自定义function1");
+		user.disName("自定义function1");
 
 		Function<String, User> function = User::new;
 		User apply = function.apply("构造器");
@@ -233,6 +239,14 @@ public class JavaOnePointEightTest {
 		String str = "ZXlKeVpYTjFiSFFpT2lKdmF5SXNJbU5vWVc1dVpXd2lPaUpYV0NJc0ltbGtJam9pVnpFNU1UQXdPVEk1TWpNeU9USXpOakEyT1RjNE9Ea2lmUT09";
 		byte[] decode = Base64.getDecoder().decode(str);
 		System.out.println("解密：" + new String(Base64.getDecoder().decode(new String(decode))));
+	}
 
+	public static void testUrlTransport() {
+		String encryptStr = "TNbihRPVSX1Dw iW8h9bS3xjM1wXFr2mRh4N2Wham7v7/IgEo8UeGIC1k1XuZc9P 3JoESbvnZE5JUJWq6Fz5ehTinEFgG65NYbKTrb2N Rf0sCMsMYgQcIv/w7vCn6B9p66BG20vkiXlSnjDDCe kYzjwUmonUk0KBvJRXGuPo=";
+		try {
+			log.info("结果：{}", URLEncoder.encode(encryptStr, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 }

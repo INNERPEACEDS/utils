@@ -4,9 +4,7 @@ import com.wgb.utils.util.constants.file.ImageFileConstant;
 import com.wgb.utils.util.string.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.nio.channels.FileChannel;
 import java.util.*;
 
@@ -221,6 +219,21 @@ public class FileUtil {
         File file = new File(filePath + fileName);
         File copyFile = new File(copyPath);
         copyFile(file, copyFile);
+    }
+
+    public static String readFile(String path) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader bw = new BufferedReader(new FileReader(path))) {
+            String line = null;
+            while ((line = bw.readLine()) != null) {
+                sb.append(line).append("\r\n");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
     }
 
 }

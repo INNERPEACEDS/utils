@@ -143,3 +143,12 @@ SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI 的
 
 3.从存储集合中获取对象信息，进行操作
 
+# 2020-05-28
+#1.二维码生成和解析
+
+包路径：com.wgb.utils.util.qrcode
+
+#2.JAVA并发编程实践示例
+
+包路径：com.wgb.utils.test.high.concurrency(暂未全完成)
+
