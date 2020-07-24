@@ -2,8 +2,7 @@ package com.wgb.utils.util.concurrency.executors;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * @author INNERPEACE
@@ -14,7 +13,8 @@ public class ExecutorsTest {
 
 	public static void main(String[] args) throws InterruptedException {
 //		newSingleThreadExecutorTest();
-		newFixedThreadPoolTest();
+//		newFixedThreadPoolTest();
+		newCacheThreadPoolTest();
 		log.info("主线程退出");
 	}
 
@@ -57,6 +57,7 @@ public class ExecutorsTest {
 	}
 
 	public static void newFixedThreadPoolTest() {
+		Executors.newCachedThreadPool();
 		ExecutorService service = Executors.newFixedThreadPool(5);
 		service.execute(() -> {
 			log.info("进入1");
@@ -90,5 +91,99 @@ public class ExecutorsTest {
 		service.shutdown();
 	}
 
+	public static void newCacheThreadPoolTest() throws InterruptedException{
+		ExecutorService executorService = new ThreadPoolExecutor(2, 3,
+				1L, TimeUnit.SECONDS,
+				new LinkedBlockingQueue<Runnable>(1));
+//		ExecutorService executorService = Executors.newFixedThreadPool(3);
+		// 1
+		executorService.execute(() ->{
+			try {
+				log.info("1开始计算");
+				Thread.sleep(10000);
+				log.info("1计算完成");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		// 2
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		log.info("开始第三个");
+		// 3
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(20000);
+				log.info("3计算完成");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		// 开始第四个
+		log.info("开始第四个");
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		log.info("开始第5个");
+		/*executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		log.info("开始第6个");
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		log.info("开始第7个");
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		log.info("开始第8个");
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		log.info("开始第9个");
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		log.info("开始第10个");
+		executorService.execute(() ->{
+			try {
+				Thread.sleep(999999999);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});*/
+		executorService.shutdown();
+		Thread.sleep(120000);
+		log.info("结束");
+	}
 
 }

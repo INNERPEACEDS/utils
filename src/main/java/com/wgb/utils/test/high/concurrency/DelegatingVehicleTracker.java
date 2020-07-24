@@ -52,7 +52,7 @@ public class DelegatingVehicleTracker {
 		log.info("外层map：{}", map.toString());*/
 		Map<String, Point> location = new HashMap<>();
 		location = delegatingVehicleTracker.getLocations();
-		location.put("1", new Point(2, 2));
+		location.put("0", new Point(2, 2));
 		log.info("location:{}", location);
 	}
 

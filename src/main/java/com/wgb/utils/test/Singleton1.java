@@ -8,9 +8,14 @@ import lombok.extern.slf4j.Slf4j;
  **/
 @Slf4j
 public class Singleton1 {
-    private static Singleton1 singleton = new Singleton1();
+    private static Singleton1 singleton = new Singleton1("1","2");
 
-    private Singleton1() {
+    private final String a;
+    private String b;
+    private Singleton1(String a, String b) {
+        log.info("进入构造函数");
+        this.a = a;
+        this.b = b;
 
     }
 
@@ -23,7 +28,7 @@ public class Singleton1 {
     }
 
     public static void main(String[] args) {
-        Singleton1 s = new Singleton1();
+        Singleton1 s = new Singleton1("2", "3");
         log.info("单例的对象：{}，值：{}", s, Singleton1.getInstance());
     }
 

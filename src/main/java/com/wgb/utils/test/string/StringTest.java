@@ -1,6 +1,7 @@
 package com.wgb.utils.test.string;
 
 import com.wgb.utils.test.MessageList;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +10,11 @@ import java.util.List;
  * @author INNERPEACE
  * @date 2019/11/1 16:16
  */
+@Slf4j
 public class StringTest {
 
 	public static void main(String[] args) {
+		stringTest();
 		String a = "2" + "\\" + "2kk";
 		System.out.println(a);
 		List<String> list = MessageList.getInstance().getMessages();
@@ -38,6 +41,15 @@ public class StringTest {
 			String newSequence = getNewSequence(a2, 6);
 			System.out.print(newSequence+",");
 		}
+	}
+
+	public static void stringTest() {
+		String a = new String("abcde1234");
+		String b = new String("abcde1234");
+		String c = "abcde1234";
+		String d = "abcde1234";
+
+		log.info("a=b:{}, a=c:{}, c=d:{}", a == b, a == c, c == d);
 	}
 
 	private static String getNewSequence(String remark, int n){

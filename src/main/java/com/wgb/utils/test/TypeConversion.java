@@ -7,9 +7,9 @@ package com.wgb.utils.test;
  **/
 public class TypeConversion {
 	public static void main(String[] args) {
-
 		Integer a = null;
 		String b = String.valueOf(a);
 		System.out.println(b);
+		System.out.println(true || true && false);
 	}
 }

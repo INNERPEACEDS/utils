@@ -1,9 +1,16 @@
 package com.wgb.utils.test;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
+ * 线程不安全，++操作不是原子性的
  * @author INNERPEACE
  * @date 2019/12/25 13:59
  */
+@Slf4j
 public class VolatileTest {
 	private static volatile int race = 0;
 
@@ -13,20 +20,42 @@ public class VolatileTest {
 		race++;
 	}
 
+	public static volatile int value = 1;
+
+
 	public static void main(String[] args) throws InterruptedException {
-		Thread[] threads = new Thread[threadNumber];
+		ExecutorService exec = Executors.newCachedThreadPool();
+		exec.submit(() -> {
+			while (VolatileTest.value == 1) {
+				// 寻找
+				/*long a = 1000, b = 2000, c;
+				c = a * b;
+				log.info("c={}", c);*/
+			}
+		});
+		exec.submit(() -> {
+			try {
+				Thread.sleep(5000);
+				VolatileTest.value = 0;
+				log.info("让其结束");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		});
+		exec.shutdown();
+		/*Thread[] threads = new Thread[threadNumber];
 		for (int i = 0; i < threadNumber; i++) {
 			int finalI = i;
 			threads[i] = new Thread(() ->{
-				for (int j = 0; j < 100; j++) {
+				for (int j = 0; j < 10000; j++) {
 					increase();
-					/*try {
+					*//*try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
-					}*/
-					/*System.out.println("开始线程" + finalI + ":");
-					findAllThread();*/
+					}*//*
+					*//*System.out.println("开始线程" + finalI + ":");
+					findAllThread();*//*
 				}
 			}
 			);
@@ -36,7 +65,7 @@ public class VolatileTest {
 			System.out.println(Thread.activeCount());
 			Thread.yield();
 		}
-		System.out.println("race=" + race);
+		System.out.println("race=" + race);*/
 	}
 
 	public static Thread[] findAllThread(){

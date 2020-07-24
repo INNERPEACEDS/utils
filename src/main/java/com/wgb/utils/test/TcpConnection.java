@@ -1,6 +1,7 @@
 package com.wgb.utils.test;
 
 import ch.qos.logback.core.encoder.ByteArrayUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,6 +10,7 @@ import java.net.Socket;
  * @author INNERPEACE
  * @date 2020/5/19 11:39
  */
+@Slf4j
 public class TcpConnection {
 	public static void main(String[] args) throws IOException {
 		/*String address = "localhost";
@@ -36,14 +38,48 @@ public class TcpConnection {
 //			String s = bytes.toString();
 //			out.write(s.getBytes());
 //			out.write(hexString.getBytes());
-			out.writeUTF(hexString);
+//			out.writeUTF(hexString);
+			// 报文头 2字节
+			out.writeShort(bytes.length);
+			// 报文
+			out.write(bytes);
 			/*返回输入流*/
 			InputStream inFromServer = client.getInputStream();
 			DataInputStream in = new DataInputStream(inFromServer);
 			/*readUTF()读取信息*/
-			System.out.println("服务器响应： " + in.readUTF());
-			client.close();
-		}catch(IOException e) {
+//			System.out.println("服务器响应： " + in.readUTF());
+
+			while (true) {
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				try {
+					// 接收报文长度
+					int dataLen = in.readShort();
+					// 接收报文
+					byte[] buff = new byte[1024];
+					int totalLen = 0;
+					do {
+						int recvLen = in.read(buff);
+						baos.write(buff, 0, recvLen);
+						totalLen += recvLen;
+					} while(totalLen<dataLen);
+				} catch(EOFException ee) {
+					log.debug("Client"+client.getRemoteSocketAddress()+" recv data end.", ee);
+					break;
+				} catch(IOException e) {
+					log.error("Client"+client.getRemoteSocketAddress()+" recv data exception.", e);
+					break;
+				}
+				// 请求数据
+//			    byte[] reqData = ByteArrayUtil.hexStr2Bytes(baos.toString());
+				byte[] reqData = baos.toByteArray();
+
+				System.out.println("服务器响应： " + reqData);
+				client.close();
+				out.close();
+				in.close();
+				break;
+			}
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}

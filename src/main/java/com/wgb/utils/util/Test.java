@@ -49,7 +49,7 @@ public class Test {
         /*Map<String, String> map = new HashMap<>();
         map.put("test", "test");
         if (map.get("test") != null) {
-            // BigDecimal test = new BigDecimal("0");
+            // BigDecimalTest test = new BigDecimalTest("0");
             String a = null,b="test";
 
             StringBuilder builder = new StringBuilder();

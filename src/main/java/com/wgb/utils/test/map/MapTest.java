@@ -1,18 +1,24 @@
 package com.wgb.utils.test.map;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author INNERPEACE
  * @date 2019/10/31 17:44
  */
+@Slf4j
 public class MapTest {
 	public static void main(String[] agrs) throws InterruptedException {
-		mapTest();
+//		mapThreadInterruptedTest();
+//		mapTest();
+		mapErgodicTest();
+
+	}
+
+	public static void mapThreadInterruptedTest() throws InterruptedException {
 		// final HashMap<String,String> map = new HashMap<String,String>();
 		// final Hashtable<String,String> map = new Hashtable<>();
 		final ConcurrentHashMap<String,String> map = new ConcurrentHashMap<>(16);
@@ -54,7 +60,42 @@ public class MapTest {
 			list.add(data);
 			data.put(String.valueOf(i), "2");
 			data = null;
+			data = new HashMap<>();
+			data.put(String.valueOf(i), "3");
 			System.out.println("1");
 		}
+	}
+
+	public static void mapErgodicTest() {
+		Map<String, String> map = new HashMap<>();
+		for (int i = 0; i < 10; i++) {
+			map.put(String.valueOf(i), String.valueOf(i));
+		}
+
+		// 1、map.entrySet方式，该方式可修改已存在键的值信息，不能进行增加和删除操作；
+		/*for (Map.Entry entry : map.entrySet()) {
+			String key = (String) entry.getKey();
+			String value = (String) entry.getValue();
+			log.info("key:{},value:{}", key, value);
+			if ("5".equals(key)) {
+//				map.remove(key);
+				map.put(String.valueOf(value), "555");
+			}
+		}*/
+
+		// 2.Iterator遍历期间，也不能进行增加移除操作
+		Iterator<Map.Entry<String, String>> entries = map.entrySet().iterator();
+		while(entries.hasNext()){
+			Map.Entry<String, String> entry = entries.next();
+			String key = entry.getKey();
+			String value = entry.getValue();
+			log.info("key:{},value:{}", key, value);
+			if ("5".equals(key)) {
+				map.remove(key);
+//				map.put(String.valueOf(value), "555");
+			}
+		}
+
+		log.info("map:{}", map);
 	}
 }

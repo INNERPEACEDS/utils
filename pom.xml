@@ -398,6 +398,18 @@
             <version>2.4</version>
             <classifier>jdk15</classifier><!--指定jdk版本 -->
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib 结束 -->
     </dependencies>
 

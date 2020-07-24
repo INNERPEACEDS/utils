@@ -150,5 +150,5 @@ SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI 的
 
 #2.JAVA并发编程实践示例
 
-包路径：com.wgb.utils.test.high.concurrency(暂未全完成)
+包路径：com.wgb.utils.test.high.concurrency
 

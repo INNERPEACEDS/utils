@@ -15,6 +15,6 @@ import com.wgb.utils.util.spi.entity.Wheel;
 public interface WheelMaker {
 	@Adaptive
 	Wheel makeWheel(URL url);
-	// @Adaptive
-	Wheel makeNewWheel(String newWheel);
+//	 @Adaptive
+	Wheel makeNewWheel(URL url);
 }
