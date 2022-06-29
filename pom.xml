@@ -95,7 +95,7 @@
         <dependency>
              <groupId>org.apache.commons</groupId>
              <artifactId>commons-email</artifactId>
-             <version>1.4</version>
+             <version>1.5</version>
          </dependency>
         <!--spring自带mail包-->
         <!--对应于D:\project\wgb\utils\src\main\java\com\wgb\utils\entity\email\下的类，除Email.java除外-->
